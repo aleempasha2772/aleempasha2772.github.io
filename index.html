@@ -1,880 +1,970 @@
-.contact-content p {
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aleem Pasha - Portfolio</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-    --primary-color: #0077b6;
-    --secondary-color: #023e8a;
-    --accent-color: #00b4d8;
+    --primary: #0077b6;
+    --secondary: #023e8a;
+    --accent: #00b4d8;
     --dark-blue: #03045e;
     --light-blue: #90e0ef;
     --lightest-blue: #caf0f8;
     --text-dark: #03045e;
     --text-light: #023e8a;
-    --bg-light: #caf0f8;
     --white: #ffffff;
     --gradient: linear-gradient(135deg, #03045e 0%, #0077b6 50%, #48cae4 100%);
     --gradient-light: linear-gradient(135deg, #0096c7 0%, #48cae4 50%, #ade8f4 100%);
 }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-dark); scroll-behavior: smooth; }
+nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; transition: all 0.3s ease; }
+nav .container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: bold; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; }
+nav a { text-decoration: none; color: var(--dark-blue); font-weight: 500; transition: color 0.3s ease; position: relative; font-size: 0.9rem; }
+nav a:hover { color: var(--primary); }
+nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+nav a:hover::after { width: 100%; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #03045e 0%, #023e8a 25%, #0077b6 50%, #0096c7 75%, #00b4d8 100%); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; width: 200%; height: 200%; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom; animation: wave 10s linear infinite; }
+@keyframes wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.hero-content { text-align: center; color: var(--white); z-index: 1; padding: 2rem; animation: fadeInUp 1s ease; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.hero .subtitle { font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.95; }
+.btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; }
+.btn-primary { background: var(--white); color: var(--dark-blue); border: 2px solid var(--white); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); background: var(--lightest-blue); }
+.btn-secondary { background: transparent; color: var(--white); border: 2px solid var(--white); }
+.btn-secondary:hover { background: var(--white); color: var(--dark-blue); }
+section { padding: 80px 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; position: relative; color: var(--dark-blue); }
+h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
+.about { background: linear-gradient(180deg, var(--lightest-blue) 0%, var(--white) 100%); }
+.about-content { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+.about-image { width: 300px; height: 300px; background: var(--gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: var(--white); box-shadow: 0 20px 40px rgba(0,69,94,0.2); animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.about-text { color: var(--secondary); line-height: 1.8; }
+.about-text h3 { color: var(--dark-blue); font-size: 1.8rem; margin-bottom: 1rem; }
+.about-text p { margin-bottom: 1rem; }
+.experience { background: var(--white); }
+.timeline { position: relative; max-width: 1200px; margin: 0 auto; padding: 20px 0; }
+.timeline::after { content: ''; position: absolute; width: 4px; background: var(--gradient); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+.timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+.timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background: var(--white); border: 4px solid var(--primary); top: 20px; border-radius: 50%; z-index: 1; }
+.left { left: 0; }
+.right { left: 50%; }
+.left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid var(--white); border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--white); }
+.right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid var(--white); border-width: 10px 10px 10px 0; border-color: transparent var(--white) transparent transparent; }
+.right::after { left: -10px; }
+.timeline-content { padding: 20px 30px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 15px rgba(0,69,94,0.1); transition: all 0.3s ease; border: 1px solid rgba(144,224,239,0.3); }
+.timeline-content:hover { box-shadow: 0 15px 30px rgba(0,119,182,0.2); transform: scale(1.02); border-color: var(--accent); }
+.timeline-date { display: inline-block; background: var(--gradient-light); color: var(--white); padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+.timeline-content h3 { color: var(--dark-blue); margin: 10px 0 5px; font-size: 1.4rem; }
+.timeline-content h4 { color: var(--primary); margin: 0 0 15px; font-size: 1.1rem; font-weight: 500; }
+.timeline-content p { color: var(--text-light); line-height: 1.6; margin-bottom: 15px; }
+.experience-list { list-style: none; padding: 0; }
+.experience-list li { color: var(--text-light); padding: 5px 0 5px 20px; position: relative; }
+.experience-list li::before { content: "▸"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
+@media screen and (max-width: 768px) {
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-item::before { left: 60px; border: medium solid var(--white); border-width: 10px 10px 10px 0; border-color: transparent var(--white) transparent transparent; }
+    .left::after, .right::after { left: 21px; }
+    .right { left: 0%; }
+}
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.skill-card { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,69,94,0.1); transition: all 0.3s ease; text-align: center; border-top: 3px solid transparent; }
+.skill-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,119,182,0.2); border-top-color: var(--primary); }
+.skill-icon { font-size: 3rem; margin-bottom: 1rem; background: var(--gradient-light); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.skill-card h3 { margin-bottom: 1rem; color: var(--dark-blue); }
+.skill-list { list-style: none; color: var(--text-light); }
+.skill-list li { padding: 0.3rem 0; }
+.projects { background: linear-gradient(180deg, var(--white) 0%, var(--lightest-blue) 100%); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.project-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,69,94,0.1); transition: all 0.3s ease; border: 1px solid rgba(144,224,239,0.3); }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,119,182,0.2); border-color: var(--accent); }
+.project-image { height: 160px; background: var(--gradient-light); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--white); }
+.project-content { padding: 1.5rem; }
+.project-content h3 { margin-bottom: 0.8rem; color: var(--dark-blue); }
+.project-content p { color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem; }
+.tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.tech-tag { background: var(--lightest-blue); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; color: var(--secondary); font-weight: 500; border: 1px solid var(--light-blue); }
+.project-links a { color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+.project-links a:hover { color: var(--secondary); }
+.contact-content { max-width: 600px; margin: 0 auto; text-align: center; }
+.contact-content p { color: var(--text-light); line-height: 1.8; margin-bottom: 1rem; }
+.contact-info { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+.contact-item { display: flex; align-items: center; gap: 0.5rem; color: var(--dark-blue); text-decoration: none; transition: color 0.3s ease; }
+.contact-item:hover { color: var(--primary); }
+.contact-item svg { width: 20px; height: 20px; }
+footer { background: var(--dark-blue); color: var(--white); text-align: center; padding: 2rem; }
+.menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+.menu-toggle span { width: 25px; height: 3px; background: var(--dark-blue); margin: 3px 0; transition: 0.3s; }
+@media (max-width: 768px) {
+    nav ul { gap: 1rem; font-size: 0.85rem; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero .subtitle { font-size: 1.2rem; }
+    .about-content { grid-template-columns: 1fr; text-align: center; }
+    .about-image { margin: 0 auto; }
+    .projects-grid { grid-template-columns: 1fr; }
+    h2 { font-size: 2rem; }
+}
+@media (max-width: 600px) {
+    .menu-toggle { display: flex; }
+    nav ul { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--white); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 27px rgba(0,0,0,0.05); padding: 2rem 0; }
+    nav ul.active { left: 0; }
+}
+.education { background: linear-gradient(180deg, var(--white) 0%, var(--lightest-blue) 100%); padding: 80px 20px; }
+.education-container { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 3rem; }
+.education-card { background: var(--white); padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,69,94,0.1); text-align: center; border-left: 4px solid var(--primary); transition: all 0.3s ease; }
+.education-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,119,182,0.2); }
+.education-icon { font-size: 3rem; margin-bottom: 1rem; }
+.education-card h3 { color: var(--dark-blue); font-size: 1.8rem; margin-bottom: 0.5rem; }
+.education-card h4 { color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem; }
+.education-institution { color: var(--text-light); font-weight: 600; margin-bottom: 0.5rem; }
+.education-duration { color: var(--accent); font-weight: 500; margin-bottom: 1rem; }
+.education-highlights { color: var(--text-light); line-height: 1.6; margin-top: 1rem; }
+.education-extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.extra-column { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,69,94,0.1); }
+.extra-column h3 { color: var(--dark-blue); font-size: 1.4rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.extra-list { list-style: none; padding: 0; }
+.extra-list li { color: var(--text-light); padding: 0.8rem 0 0.8rem 25px; border-bottom: 1px solid rgba(144,224,239,0.2); position: relative; }
+.extra-list li:last-child { border-bottom: none; }
+.extra-list li::before { content: "✓"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
+.certifications { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,69,94,0.1); }
+.certifications h3 { color: var(--dark-blue); text-align: center; margin-bottom: 2rem; font-size: 1.6rem; }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.cert-badge { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; background: var(--lightest-blue); border-radius: 50px; transition: all 0.3s ease; border: 2px solid var(--light-blue); }
+.cert-badge:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,119,182,0.2); background: var(--gradient-light); }
+.cert-badge:hover .cert-name { color: var(--white); }
+.cert-icon { font-size: 1.5rem; }
+.cert-name { font-weight: 600; color: var(--dark-blue); }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-    scroll-behavior: smooth;
+/* ================================================
+   ROADMAP SECTION — WHITE/BLUE THEME
+   ================================================ */
+.roadmap {
+    background: linear-gradient(180deg, var(--lightest-blue) 0%, #f0f8ff 50%, var(--white) 100%);
+    padding: 80px 20px;
 }
 
-/* Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    transition: all 0.3s ease;
+/* Header Block */
+.rm-header-block {
+    border-left: 5px solid var(--primary);
+    padding-left: 20px;
+    margin-bottom: 2rem;
+}
+.rm-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.rm-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--dark-blue);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+.rm-subtitle {
+    font-size: 0.85rem;
+    color: #64748b;
+    letter-spacing: 0.5px;
 }
 
-nav .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+/* Overall Progress */
+.rm-progress-box {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px 22px;
+    border: 1px solid #e0f0ff;
+    box-shadow: 0 2px 10px rgba(0,119,182,0.06);
+    margin-bottom: 1.8rem;
+}
+.rm-progress-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--dark-blue);
-    font-weight: 500;
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-nav a:hover {
-    color: var(--primary-color);
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #03045e 0%, #023e8a 25%, #0077b6 50%, #0096c7 75%, #00b4d8 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-    animation: wave 10s linear infinite;
-}
-
-@keyframes wave {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.hero-content {
-    text-align: center;
-    color: var(--white);
-    z-index: 1;
-    padding: 2rem;
-    animation: fadeInUp 1s ease;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.hero .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-}
-
-.btn-group {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.btn-primary {
-    background: var(--white);
-    color: var(--dark-blue);
-    border: 2px solid var(--white);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background: var(--lightest-blue);
-    border-color: var(--lightest-blue);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--white);
-    border: 2px solid var(--white);
-}
-
-.btn-secondary:hover {
-    background: var(--white);
-    color: var(--dark-blue);
-}
-
-/* Sections */
-section {
-    padding: 80px 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    color: var(--dark-blue);
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: var(--gradient);
-    border-radius: 2px;
-}
-
-/* About Section */
-.about {
-    background: linear-gradient(180deg, var(--lightest-blue) 0%, var(--white) 100%);
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.about-image {
-    width: 300px;
-    height: 300px;
-    background: var(--gradient);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    color: var(--white);
-    box-shadow: 0 20px 40px rgba(0, 69, 94, 0.2);
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.about-text {
-    color: var(--secondary-color);
-    line-height: 1.8;
-}
-
-.about-text h3 {
-    color: var(--dark-blue);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-/* Experience Section */
-.experience {
-    background: var(--white);
-}
-
-.timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background: var(--gradient);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-}
-
-.timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-}
-
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: -10px;
-    background: var(--white);
-    border: 4px solid var(--primary-color);
-    top: 20px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.left {
-    left: 0;
-}
-
-.right {
-    left: 50%;
-}
-
-.left::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: 30px;
-    border: medium solid var(--white);
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent var(--white);
-}
-
-.right::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: 30px;
-    border: medium solid var(--white);
-    border-width: 10px 10px 10px 0;
-    border-color: transparent var(--white) transparent transparent;
-}
-
-.right::after {
-    left: -10px;
-}
-
-.timeline-content {
-    padding: 20px 30px;
-    background: var(--white);
-    position: relative;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(144, 224, 239, 0.3);
-}
-
-.timeline-content:hover {
-    box-shadow: 0 15px 30px rgba(0, 119, 182, 0.2);
-    transform: scale(1.02);
-    border-color: var(--accent-color);
-}
-
-.timeline-date {
-    display: inline-block;
-    background: var(--gradient-light);
-    color: var(--white);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
     margin-bottom: 10px;
 }
-
-.timeline-content h3 {
-    color: var(--dark-blue);
-    margin: 10px 0 5px 0;
-    font-size: 1.4rem;
+.rm-progress-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: #94a3b8;
+    text-transform: uppercase;
 }
-
-.timeline-content h4 {
-    color: var(--primary-color);
-    margin: 0 0 15px 0;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.timeline-content p {
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.experience-list {
-    list-style: none;
-    padding: 0;
-}
-
-.experience-list li {
-    color: var(--text-light);
-    padding: 5px 0;
-    position: relative;
-    padding-left: 20px;
-}
-
-.experience-list li::before {
-    content: "▸";
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-/* Mobile Timeline */
-@media screen and (max-width: 768px) {
-    .timeline::after {
-        left: 31px;
-    }
-
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-
-    .timeline-item::before {
-        left: 60px;
-        border: medium solid var(--white);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--white) transparent transparent;
-    }
-
-    .left::after, .right::after {
-        left: 21px;
-    }
-
-    .right {
-        left: 0%;
-    }
-
-    .timeline-content h3 {
-        font-size: 1.2rem;
-    }
-
-    .timeline-content h4 {
-        font-size: 1rem;
-    }
-}
-
-/* Skills Section */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.skill-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    border-top: 3px solid transparent;
-}
-
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 119, 182, 0.2);
-    border-top-color: var(--primary-color);
-}
-
-.skill-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    background: var(--gradient-light);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.skill-card h3 {
-    margin-bottom: 1rem;
-    color: var(--dark-blue);
-}
-
-.skill-list {
-    list-style: none;
-    color: var(--text-light);
-}
-
-.skill-list li {
-    padding: 0.3rem 0;
-}
-
-/* Projects Section */
-.projects {
-    background: linear-gradient(180deg, var(--white) 0%, var(--lightest-blue) 100%);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(144, 224, 239, 0.3);
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 119, 182, 0.2);
-    border-color: var(--accent-color);
-}
-
-.project-image {
-    height: 200px;
-    background: var(--gradient-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: var(--white);
-}
-
-.project-content {
-    padding: 1.5rem;
-}
-
-.project-content h3 {
-    margin-bottom: 1rem;
-    color: var(--dark-blue);
-}
-
-.project-content p {
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.tech-tag {
-    background: var(--lightest-blue);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+.rm-progress-val {
     font-size: 0.85rem;
-    color: var(--secondary-color);
-    font-weight: 500;
-    border: 1px solid var(--light-blue);
+    font-weight: 700;
+    color: var(--primary);
+}
+.rm-bar {
+    height: 7px;
+    background: #e0f0ff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.rm-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    width: 0%;
 }
 
-.project-links {
+/* Track Badges */
+.rm-badges {
     display: flex;
-    gap: 1rem;
-}
-
-.project-links a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.project-links a:hover {
-    color: var(--secondary-color);
-}
-
-/* Contact Section */
-.contact-content {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 10px;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
+.rm-badge {
+    font-size: 0.65rem;
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    border: 1.5px solid;
+}
+.rm-badge-core  { background: #e6f7ff; border-color: var(--primary); color: var(--primary); }
+.rm-badge-ai    { background: #fce7f3; border-color: #db2777; color: #db2777; }
+.rm-badge-low   { background: #f8fafc; border-color: #94a3b8; color: #64748b; }
 
-.contact-item {
+/* Daily time blocks strip */
+.rm-daily-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--white);
+    border: 1px solid #e0f0ff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 10px rgba(0,119,182,0.06);
+}
+.rm-strip-slot {
+    padding: 14px 10px;
+    border-right: 1px solid #e0f0ff;
+    text-align: center;
+}
+.rm-strip-slot:last-child { border-right: none; }
+.rm-strip-time {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.rm-strip-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+.rm-strip-desc {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* Week Cards */
+.rm-week-list { display: flex; flex-direction: column; gap: 10px; }
+
+.rm-week-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1.5px solid #e0f0ff;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,119,182,0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.rm-week-card.open {
+    border-color: var(--primary);
+    box-shadow: 0 4px 20px rgba(0,119,182,0.12);
+}
+
+.rm-week-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--dark-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact-item:hover {
-    color: var(--primary-color);
-}
-
-.contact-item svg {
-    width: 20px;
-    height: 20px;
-}
-
-/* Footer */
-footer {
-    background: var(--dark-blue);
-    color: var(--white);
-    text-align: center;
-    padding: 2rem;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    nav ul {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero .subtitle {
-        font-size: 1.2rem;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .about-image {
-        margin: 0 auto;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-/* Hamburger Menu for Mobile */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
+    gap: 16px;
+    padding: 16px 20px;
     cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+}
+.rm-week-header:hover { background: #f8fbff; }
+
+.rm-week-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 900;
+    font-size: 0.85rem;
+    flex-shrink: 0;
 }
 
-.menu-toggle span {
-    width: 25px;
+.rm-week-info { flex: 1; }
+.rm-week-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+.rm-week-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+}
+.rm-week-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+.rm-wtag {
+    font-size: 0.58rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: #e6f7ff;
+    color: var(--primary);
+    border: 1px solid #bae6fd;
+    font-weight: 600;
+}
+.rm-wtag-ai { background: #fce7f3; color: #db2777; border-color: #fbcfe8; }
+
+.rm-week-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+.rm-week-pct { font-size: 0.8rem; font-weight: 700; color: var(--primary); }
+.rm-week-pct.done { color: #059669; }
+.rm-week-toggle {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid #e0f0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.rm-week-card.open .rm-week-toggle {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.rm-week-bar {
     height: 3px;
-    background: var(--dark-blue);
-    margin: 3px 0;
-    transition: 0.3s;
+    background: #e0f0ff;
+}
+.rm-week-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.4s ease;
 }
 
+/* Day list inside week */
+.rm-days-container { display: none; padding: 8px 16px 16px; background: #f8fbff; }
+.rm-days-container.visible { display: block; }
+
+.rm-day-card {
+    background: var(--white);
+    border: 1px solid #e0f0ff;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+}
+.rm-day-card.open { border-color: var(--accent); }
+.rm-day-card:last-child { margin-bottom: 0; }
+
+.rm-day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+.rm-day-header:hover { background: #f0f8ff; }
+
+.rm-day-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #e0f0ff;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #94a3b8;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+.rm-day-card.all-done .rm-day-dot {
+    background: #dcfce7;
+    border-color: #059669;
+    color: #059669;
+}
+
+.rm-day-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    flex: 1;
+}
+.rm-day-sub {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    margin-left: 4px;
+}
+.rm-day-progress {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-right: 8px;
+}
+.rm-day-arrow {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    transition: transform 0.2s;
+}
+.rm-day-card.open .rm-day-arrow { transform: rotate(180deg); color: var(--primary); }
+
+/* Task items inside a day */
+.rm-tasks { display: none; padding: 4px 16px 12px; }
+.rm-tasks.visible { display: block; }
+
+.rm-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+}
+.rm-task:hover { background: #f0f8ff; border-color: #e0f0ff; }
+.rm-task.done { background: #f0fdf4; border-color: #bbf7d0; }
+
+.rm-task-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    color: white;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    background: transparent;
+}
+.rm-task.done .rm-task-check { background: #059669; border-color: #059669; }
+
+.rm-task-block {
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    width: 56px;
+    text-align: center;
+}
+.bl-dsa   { background: #dbeafe; color: #1d4ed8; }
+.bl-java  { background: #ffedd5; color: #c2410c; }
+.bl-lld   { background: #f3e8ff; color: #7c3aed; }
+.bl-code  { background: #dcfce7; color: #15803d; }
+.bl-ai    { background: #fce7f3; color: #db2777; }
+.bl-proj  { background: #fef9c3; color: #a16207; }
+.bl-flex  { background: #f1f5f9; color: #475569; }
+
+.rm-task-text {
+    font-size: 0.8rem;
+    color: #334155;
+    flex: 1;
+    line-height: 1.3;
+}
+.rm-task.done .rm-task-text { text-decoration: line-through; color: #94a3b8; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .rm-daily-strip { grid-template-columns: repeat(4,1fr); }
+}
 @media (max-width: 600px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    nav ul {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: var(--white);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-    }
-
-    nav ul.active {
-        left: 0;
-    }
+    .rm-daily-strip { grid-template-columns: repeat(2,1fr); }
+    .rm-strip-slot { border-bottom: 1px solid #e0f0ff; }
 }
+/* ================================================
+   ROADMAP-SECTION (static timetable variant)
+   Classes used by the second roadmap <section>
+   ================================================ */
 
-/* Education Section */
-.education {
-    background: linear-gradient(180deg, var(--white) 0%, var(--lightest-blue) 100%);
+/* ── Section wrapper ── */
+.roadmap-section {
+    background: linear-gradient(180deg, var(--lightest-blue) 0%, #f0f9ff 50%, var(--white) 100%);
     padding: 80px 20px;
 }
 
-.education-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-.education-card {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
+/* ── Tagline under h2 ── */
+.roadmap-tagline {
     text-align: center;
-    border-left: 4px solid var(--primary-color);
-    transition: all 0.3s ease;
-}
-
-.education-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 119, 182, 0.2);
-}
-
-.education-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.education-card h3 {
-    color: var(--dark-blue);
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-
-.education-card h4 {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.education-institution {
-    color: var(--text-light);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.education-duration {
-    color: var(--accent-color);
+    color: var(--primary);
+    font-size: 0.92rem;
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-top: -2.2rem;
+    margin-bottom: 3rem;
+    letter-spacing: 0.4px;
 }
 
-.education-highlights {
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-top: 1rem;
+/* ── "Daily Time Blocks" label ── */
+.schedule-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+    display: block;
 }
 
-.education-extras {
+/* ── Daily Schedule 7-column strip ── */
+.daily-schedule {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.extra-column {
+    grid-template-columns: repeat(7, 1fr);
     background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
-    border-top: 3px solid var(--gradient-light);
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 12px rgba(0, 119, 182, 0.08);
 }
 
-.extra-column h3 {
-    color: var(--dark-blue);
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.extra-list {
-    list-style: none;
-    padding: 0;
-}
-
-.extra-list li {
-    color: var(--text-light);
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(144, 224, 239, 0.2);
-    position: relative;
-    padding-left: 25px;
-}
-
-.extra-list li:last-child {
-    border-bottom: none;
-}
-
-.extra-list li::before {
-    content: "✓";
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-.certifications {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 69, 94, 0.1);
-}
-
-.certifications h3 {
-    color: var(--dark-blue);
+.schedule-block {
+    padding: 16px 10px;
+    border-right: 1px solid #dbeafe;
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.6rem;
+    transition: background 0.2s;
+    border-top: 3px solid transparent;
+}
+.schedule-block:last-child { border-right: none; }
+.schedule-block:hover { background: #f0f9ff; }
+
+.sb-dsa  { border-top-color: #1d4ed8; }
+.sb-java { border-top-color: #c2410c; }
+.sb-lld  { border-top-color: #7c3aed; }
+.sb-code { border-top-color: #15803d; }
+.sb-ai   { border-top-color: #db2777; }
+.sb-proj { border-top-color: #a16207; }
+.sb-flex { border-top-color: #475569; }
+
+.sb-time {
+    font-size: 0.58rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
 }
 
-.cert-grid {
+.sb-label {
+    font-size: 0.71rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    letter-spacing: 0.2px;
+}
+
+/* label accent colours */
+.dsa-c  { color: #1d4ed8; }
+.java-c { color: #c2410c; }
+.lld-c  { color: #7c3aed; }
+.code-c { color: #15803d; }
+.ai-c   { color: #db2777; }
+.proj-c { color: #a16207; }
+.flex-c { color: #475569; }
+
+.sb-desc {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+/* ── Sub-header (reused across roadmap-section) ── */
+.rm-subheader {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 3rem 0 1.2rem;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+}
+
+/* ================================================
+   9-WEEK PHASE CARDS
+   ================================================ */
+.phases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+.phase-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.4rem;
+    border: 1.5px solid #dbeafe;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 119, 182, 0.07);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.phase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 119, 182, 0.15);
+}
+
+/* Per-week accent stripe */
+.ph-1 { border-top-color: #0077b6; }
+.ph-2 { border-top-color: #0096c7; }
+.ph-3 { border-top-color: #00b4d8; }
+.ph-4 { border-top-color: #48cae4; }
+.ph-5 { border-top-color: #db2777; }
+.ph-6 { border-top-color: #7c3aed; }
+.ph-7 { border-top-color: #059669; }
+.ph-8 { border-top-color: #c2410c; }
+.ph-9 { border-top-color: #a16207; }
+
+.phase-week {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.phase-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--dark-blue);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.phase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0.8rem;
+}
+
+.phase-tag {
+    font-size: 0.6rem;
+    padding: 3px 9px;
+    background: #e0f2fe;
+    color: var(--primary);
+    border: 1px solid #bae6fd;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.phase-problems {
+    font-size: 0.71rem;
+    color: #64748b;
+    line-height: 1.65;
+    padding: 0.65rem 0.75rem;
+    background: #f8fbff;
+    border-radius: 6px;
+    border-left: 3px solid #bae6fd;
+}
+
+/* ================================================
+   3 CAPSTONE PROJECT CARDS
+   ================================================ */
+.capstone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
-.cert-badge {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--lightest-blue);
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--light-blue);
+.capstone-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.8rem;
+    border: 1.5px solid #dbeafe;
+    box-shadow: 0 4px 14px rgba(0, 119, 182, 0.09);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.capstone-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0, 119, 182, 0.16);
 }
 
-.cert-badge:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 119, 182, 0.2);
-    background: var(--gradient-light);
-    color: var(--white);
+.capstone-num {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
 }
 
-.cert-icon {
-    font-size: 1.5rem;
-}
-
-.cert-name {
-    font-weight: 600;
+.capstone-title {
+    font-size: 1.05rem;
+    font-weight: 800;
     color: var(--dark-blue);
+    margin-bottom: 0.25rem;
 }
 
-.cert-badge:hover .cert-name {
-    color: var(--white);
+.capstone-weeks {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .education-extras {
-        grid-template-columns: 1fr;
-    }
-    
-    .cert-grid {
-        grid-template-columns: 1fr;
-    }
+.capstone-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 1rem;
+}
+
+.cap-tech {
+    font-size: 0.64rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.cap-c1 { background: #dbeafe; color: #1d4ed8; }
+.cap-c2 { background: #fce7f3; color: #db2777; }
+.cap-c3 { background: #dcfce7; color: #15803d; }
+
+.capstone-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.capstone-features li {
+    font-size: 0.79rem;
+    color: #475569;
+    padding: 0.42rem 0 0.42rem 20px;
+    position: relative;
+    border-bottom: 1px solid #f1f5f9;
+    line-height: 1.45;
+}
+.capstone-features li:last-child { border-bottom: none; }
+.capstone-features li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.68rem;
+    top: 0.5rem;
+}
+
+/* ================================================
+   LEETCODE TRACKER
+   ================================================ */
+.lc-tracker {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.8rem;
+    border: 1.5px solid #dbeafe;
+    box-shadow: 0 4px 14px rgba(0, 119, 182, 0.09);
+}
+
+.lc-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.lc-stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lc-stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.lc-progress-bar {
+    height: 8px;
+    background: #dbeafe;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.6rem;
+}
+
+.lc-progress-fill {
+    height: 100%;
+    width: 55%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+}
+
+.lc-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.lc-cat {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.72rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+.lc-cat:hover { background: #f8fbff; }
+.lc-cat:last-child { border-bottom: none; }
+
+.lc-cat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.lc-cat-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 3px;
+}
+
+.lc-cat-problems {
+    font-size: 0.72rem;
+    color: #64748b;
+    line-height: 1.55;
+}
+
+/* ================================================
+   AI ENGINEERING TOPICS COVERAGE
+   ================================================ */
+.ai-topics-grid {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.5rem 1.5rem 0.8rem;
+    border: 1.5px solid #dbeafe;
+    box-shadow: 0 4px 14px rgba(0, 119, 182, 0.09);
+}
+
+.ai-topic-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0.75rem;
+    border-radius: 6px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.15s;
+    gap: 1rem;
+}
+.ai-topic-row:last-child { border-bottom: none; }
+.ai-topic-row:hover { background: #f8fbff; }
+
+.ai-topic-name {
+    font-size: 0.8rem;
+    color: #334155;
+    font-weight: 500;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.ai-topic-weeks {
+    font-size: 0.62rem;
+    padding: 3px 10px;
+    background: #e0f2fe;
+    color: var(--primary);
+    border: 1px solid #bae6fd;
+    border-radius: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+}
+
+/* ================================================
+   RESPONSIVE — roadmap-section
+   ================================================ */
+@media (max-width: 1024px) {
+    .phases-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+@media (max-width: 900px) {
+    .daily-schedule { grid-template-columns: repeat(4, 1fr); }
+    .schedule-block { border-bottom: 1px solid #dbeafe; }
+    .lc-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .daily-schedule { grid-template-columns: repeat(2, 1fr); }
+    .phases-grid  { grid-template-columns: 1fr; }
+    .capstone-grid { grid-template-columns: 1fr; }
+    .lc-stats { grid-template-columns: repeat(2, 1fr); }
+    .ai-topic-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .ai-topic-weeks { margin-left: 0; }
+    .lc-cat { flex-direction: column; gap: 6px; }
+    .lc-cat-dot { margin-top: 0; }
 }
 </style>
 </head>
 <body>
-<!-- Navigation -->
+
+<!-- NAV -->
 <nav>
 <div class="container">
     <div class="logo">Aleem Pasha</div>
     <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
     <ul id="navMenu">
         <li><a href="#home">Home</a></li>
@@ -882,17 +972,18 @@ footer {
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- HERO -->
 <section class="hero" id="home">
 <div class="hero-content">
     <h1>Hi, I'm Aleem Pasha</h1>
-    <p class="subtitle">Java Fullstack Developer </p>
+    <p class="subtitle">Java Fullstack Developer</p>
     <div class="btn-group">
         <a href="#projects" class="btn btn-primary">View My Work</a>
         <a href="#contact" class="btn btn-secondary">Contact Me</a>
@@ -900,7 +991,7 @@ footer {
 </div>
 </section>
 
-<!-- About Section -->
+<!-- ABOUT -->
 <section class="about" id="about">
 <div class="container">
     <h2>About Me</h2>
@@ -909,76 +1000,63 @@ footer {
         <div class="about-text">
             <h3>Building Scalable Enterprise Solutions</h3>
             <p>I'm a passionate Java developer with 3+ years of experience specializing in Spring Boot microservices and Angular UI framework. My expertise lies in designing, developing, and deploying robust applications from development to production with minimal issues.</p>
-            <p>Currently working at Tata Consultancy Services, I've been instrumental in developing enterprise-level applications including billing systems and network management solutions. I have demonstrated proficiency in handling complex business requirements, from creating comprehensive documentation to implementing features and performing root cause analysis.</p>
-            <p>I hold certifications in AWS Cloud Practitioner, Microservice Development, and Azure AI Fundamentals, which complement my hands-on experience in building cloud-native applications. My approach combines technical excellence with business acumen to deliver solutions that drive real value.</p>
+            <p>Currently working at Tata Consultancy Services, I've been instrumental in developing enterprise-level applications including billing systems and network management solutions.</p>
+            <p>I hold certifications in AWS Cloud Practitioner, Microservice Development, and Azure AI Fundamentals, which complement my hands-on experience in building cloud-native applications.</p>
         </div>
     </div>
 </div>
 </section>
 
-<!-- Experience Section -->
+<!-- EXPERIENCE -->
 <section class="experience" id="experience">
 <div class="container">
     <h2>Work Experience</h2>
     <div class="timeline">
         <div class="timeline-item left">
             <div class="timeline-content">
-                <div class="timeline-date">MAY 2022 - Present</div>
-                <h3>Software Engineer -  Tata Consultancy Services</h3>
+                <div class="timeline-date">MAY 2022 – Present</div>
+                <h3>Software Engineer — Tata Consultancy Services</h3>
                 <h4>Network Management System | TCS</h4>
                 <p>Working on a network system application, streamlining processes for developing and managing customer networks using Spring Boot microservices and Angular.</p>
                 <ul class="experience-list">
-                    <li>Implemented business logic to perform automated service qualification checks for customer locations, ensuring
-                        seamless network service provisioning based on location-specific requirements.</li>
-                    <li>Designed and developed features for smooth device installation and configuration for specific customer orders,
-                        ensuring accurate setup for network services.</li>
-                    <li>Integrated an auto bandwidth setup feature to dynamically adjust network speed based on customer
-                        requirements, improving service efficiency and customer satisfaction.</li>
-                    <li>Improved service efficiency and customer satisfaction through automation</li>
+                    <li>Implemented automated service qualification checks for customer locations.</li>
+                    <li>Designed smooth device installation and configuration features for customer orders.</li>
+                    <li>Integrated auto bandwidth setup to dynamically adjust network speed.</li>
                 </ul>
                 <h4>RxBilling | TCS</h4>
-                <p>Developed a comprehensive billing suite covering the full lifecycle from customer onboarding to medicine dispatch for pharmaceutical operations.</p>
                 <ul class="experience-list">
-                    <li>Developed a billing suite that covers the full lifecycle, from customer onboarding to medicine dispatch, optimizing
-                        pharmaceutical operations.</li>
-                    <li>Implemented integration with government-provided APIs to automatically collect and verify patient details and
-                        insurance information, ensuring compliance and accuracy in billing.</li>
-                    <li>Built custom business logic to assess existing insurance data and tailor the billing plan for individual customers based on
-                        their coverage and specific plans.</li>
+                    <li>Built billing suite covering full lifecycle from onboarding to medicine dispatch.</li>
+                    <li>Integrated government APIs to collect and verify patient and insurance details.</li>
+                    <li>Built custom logic to tailor billing plans per customer coverage and plans.</li>
                 </ul>
             </div>
         </div>
         <div class="timeline-item right">
             <div class="timeline-content">
-                <div class="timeline-date">Feb 2022 - May 2023</div>
+                <div class="timeline-date">Feb 2022 – May 2023</div>
                 <h3>Machine Learning Intern</h3>
                 <ul class="experience-list">
-                   <li>Tuned machine learning models to accurately detect cataract eye disease, enhancing app performance. Architected and
-                    proposed a cloud-based solution for efficient app deployment and scalability.</li>
-                    <li>Engaged in the creation of tailored dashboards and reports catering to various user segments, determined by their
-                        respective access groups.</li>
+                    <li>Tuned ML models for cataract eye disease detection.</li>
+                    <li>Built tailored dashboards and reports for various user segments.</li>
                 </ul>
             </div>
         </div>
         <div class="timeline-item left">
             <div class="timeline-content">
-                <div class="timeline-date">August 2020 - October 2022</div>
-                <h3>LabView Intern</h3>
-                <h4>VI Solutions</h4>
-                <p>I have hands-on experience with LabVIEW and IoT-based projects using microcontrollers like NodeMCU and Arduino.</p>
-                    <ul>
-                        <li>Developed IoT systems with sensor integration (temperature, humidity, motion, gas), data logging, and wireless communication via Wi-Fi and MQTT.</li>
-                        <li>Connected devices to cloud platforms such as Blynk, ThingSpeak, and Adafruit IO for real-time monitoring and control.</li>
-                        <li>Worked with communication protocols including I2C, SPI, UART, and HTTP/HTTPS for seamless data exchange in embedded systems.</li>
-                        <li>Built end-to-end automation and monitoring solutions combining hardware and software for real-world applications.</li>
-                    </ul>
+                <div class="timeline-date">Aug 2020 – Oct 2022</div>
+                <h3>LabView Intern — VI Solutions</h3>
+                <ul class="experience-list">
+                    <li>Developed IoT systems with sensor integration via Wi-Fi and MQTT.</li>
+                    <li>Connected devices to Blynk, ThingSpeak, and Adafruit IO platforms.</li>
+                    <li>Worked with I2C, SPI, UART, and HTTP/HTTPS protocols.</li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 </section>
 
-<!-- Skills Section -->
+<!-- SKILLS -->
 <section class="skills" id="skills">
 <div class="container">
     <h2>Technical Skills</h2>
@@ -986,51 +1064,28 @@ footer {
         <div class="skill-card">
             <div class="skill-icon">☕</div>
             <h3>Backend Development</h3>
-            <ul class="skill-list">
-                <li>Java</li>
-                <li>Spring Boot</li>
-                <li>Microservices</li>
-                <li>RESTful APIs</li>
-                <li>Hibernate & JPA</li>
-            </ul>
+            <ul class="skill-list"><li>Java</li><li>Spring Boot</li><li>Microservices</li><li>RESTful APIs</li><li>Hibernate & JPA</li></ul>
         </div>
         <div class="skill-card">
             <div class="skill-icon">🎨</div>
             <h3>Frontend & Languages</h3>
-            <ul class="skill-list">
-                <li>Angular</li>
-                <li>HTML & CSS</li>
-                <li>C++</li>
-                <li>JavaScript</li>
-            </ul>
+            <ul class="skill-list"><li>Angular</li><li>HTML & CSS</li><li>C++</li><li>JavaScript</li></ul>
         </div>
         <div class="skill-card">
             <div class="skill-icon">🛠️</div>
             <h3>Developer Tools</h3>
-            <ul class="skill-list">
-                <li>STS & Eclipse</li>
-                <li>VS Code</li>
-                <li>Postman & Swagger</li>
-                <li>Jira & Confluence</li>
-                <li>Splunk & Spring AI</li>
-            </ul>
+            <ul class="skill-list"><li>STS & Eclipse</li><li>VS Code</li><li>Postman & Swagger</li><li>Jira & Confluence</li><li>Splunk & Spring AI</li></ul>
         </div>
         <div class="skill-card">
             <div class="skill-icon">☁️</div>
             <h3>Cloud & DevOps</h3>
-            <ul class="skill-list">
-                <li>AWS Services</li>
-                <li>Git & GitLab</li>
-                <li>Jenkins CI/CD</li>
-                <li>Docker Basics</li>
-                <li>Agile Methodology</li>
-            </ul>
+            <ul class="skill-list"><li>AWS Services</li><li>Git & GitLab</li><li>Jenkins CI/CD</li><li>Docker Basics</li><li>Agile Methodology</li></ul>
         </div>
     </div>
 </div>
 </section>
 
-<!-- Projects Section -->
+<!-- PROJECTS -->
 <section class="projects" id="projects">
 <div class="container">
     <h2>Featured Projects</h2>
@@ -1039,178 +1094,186 @@ footer {
             <div class="project-image">🏥</div>
             <div class="project-content">
                 <h3>RxBilling Suite</h3>
-                <p>Comprehensive billing solution covering the full lifecycle from customer onboarding to medicine dispatch, optimizing pharmaceutical operations with government API integration.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">Microservices</span>
-                    <span class="tech-tag">REST APIs</span>
-                    <span class="tech-tag">JPA</span>
-                </div>
-                <div class="project-links">
-                    <a href="#">View Details →</a>
-                </div>
+                <p>Comprehensive billing solution from onboarding to dispatch with government API integration.</p>
+                <div class="tech-stack"><span class="tech-tag">Spring Boot</span><span class="tech-tag">Microservices</span><span class="tech-tag">REST APIs</span><span class="tech-tag">JPA</span></div>
+                <div class="project-links"><a href="#">View Details →</a></div>
             </div>
         </div>
         <div class="project-card">
             <div class="project-image">📊</div>
             <div class="project-content">
                 <h3>Insight Flow</h3>
-                <p>Data analytics and visualization platform designed to transform raw data into actionable insights with intuitive flow-based processing and reporting.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">Data Analytics</span>
-                    <span class="tech-tag">REST API</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/aleempasha2772/insight-flow" target="_blank">GitHub →</a>
-                </div>
-            </div>
-        </div>
-        <div class="project-card">
-            <div class="project-image">💻</div>
-            <div class="project-content">
-                <h3>C++ Programming Solutions</h3>
-                <p>Collection of C++ programs and algorithms showcasing problem-solving skills, data structures implementation, and efficient programming techniques.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">C++</span>
-                    <span class="tech-tag">Algorithms</span>
-                    <span class="tech-tag">Data Structures</span>
-                    <span class="tech-tag">OOP</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/aleempasha2772/c-" target="_blank">GitHub →</a>
-                </div>
+                <p>Data analytics platform that transforms raw data into actionable insights with flow-based processing.</p>
+                <div class="tech-stack"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Analytics</span><span class="tech-tag">REST API</span></div>
+                <div class="project-links"><a href="https://github.com/aleempasha2772/insight-flow" target="_blank">GitHub →</a></div>
             </div>
         </div>
         <div class="project-card">
             <div class="project-image">👥</div>
             <div class="project-content">
                 <h3>Customer Management Microservice</h3>
-                <p>RESTful microservice for managing customer data with CRUD operations, built using Spring Boot architecture for scalable customer relationship management.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">Microservices</span>
-                    <span class="tech-tag">REST API</span>
-                    <span class="tech-tag">Java</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/aleempasha2772/customers-ms" target="_blank">GitHub →</a>
-                </div>
+                <p>RESTful microservice for customer CRUD built with Spring Boot for scalable relationship management.</p>
+                <div class="tech-stack"><span class="tech-tag">Spring Boot</span><span class="tech-tag">Microservices</span><span class="tech-tag">REST API</span><span class="tech-tag">Java</span></div>
+                <div class="project-links"><a href="https://github.com/aleempasha2772/customers-ms" target="_blank">GitHub →</a></div>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-image">💻</div>
+            <div class="project-content">
+                <h3>C++ Programming Solutions</h3>
+                <p>Collection of C++ algorithms and data structures showcasing OOP and problem-solving skills.</p>
+                <div class="tech-stack"><span class="tech-tag">C++</span><span class="tech-tag">Algorithms</span><span class="tech-tag">Data Structures</span><span class="tech-tag">OOP</span></div>
+                <div class="project-links"><a href="https://github.com/aleempasha2772/c-" target="_blank">GitHub →</a></div>
             </div>
         </div>
         <div class="project-card">
             <div class="project-image">🎤</div>
             <div class="project-content">
                 <h3>Speech Recognition System</h3>
-                <p>Voice-enabled Python application that converts speech to text through microphone input and provides text-to-speech feedback with customizable responses.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Speech Recognition</span>
-                    <span class="tech-tag">TTS</span>
-                    <span class="tech-tag">Audio Processing</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/aleempasha2772/Speech_to_text-and-Text_to_speech" target="_blank">GitHub →</a>
-                </div>
+                <p>Voice-enabled Python app converting speech to text with TTS feedback and customizable responses.</p>
+                <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Speech Recognition</span><span class="tech-tag">TTS</span></div>
+                <div class="project-links"><a href="https://github.com/aleempasha2772/Speech_to_text-and-Text_to_speech" target="_blank">GitHub →</a></div>
             </div>
         </div>
     </div>
 </div>
 </section>
 
-<!-- Education Section -->
-<section class="education" id="education">
-    <div class="container">
-        <h2>Education</h2>
-        <div class="education-container">
-            <div class="education-main">
-                <div class="education-card">
-                    <div class="education-icon">🎓</div>
-                    <h3>Bachelor of Technology</h3>
-                    <h4>Electronics and Communication Engineering</h4>
-                    <p class="education-institution">K L University, Vijayawada</p>
-                    <p class="education-duration">June 2018 - April 2022</p>
-                    <div class="education-highlights">
-                        <p>Focused on signal processing, embedded systems, and communication technologies while developing strong programming skills in Java and C++.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="education-extras">
-                <div class="extra-column">
-                    <h3>🏆 Leadership</h3>
-                    <ul class="extra-list">
-                        <li>Technical Team Lead - College Tech Fest 2021</li>
-                        <li>Project Coordinator - Final Year Capstone Project</li>
-                        <li>Mentored junior students in programming workshops</li>
-                        <li>Organized coding bootcamps for 100+ students</li>
-                    </ul>
-                </div>
-                
-                <div class="extra-column">
-                    <h3>⭐ Extra Curricular</h3>
-                    <ul class="extra-list">
-                        <li>Active member of University Coding Club</li>
-                        <li>Participated in Smart India Hackathon</li>
-                        <li>Volunteer at tech workshops and seminars</li>
-                        <li>Sports: Cricket team member</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+<div class="container">
+
+    <div class="rm-header-block">
+        <div class="rm-eyebrow">AI Engineer Roadmap · 9 Weeks · 63 Days</div>
+        <div class="rm-title">Backend → Cloud → AI Stack</div>
+        <div class="rm-subtitle">3.5 hrs/day · Java · Spring · Kafka · K8s · RAG · Agents · LLM Ops</div>
+    </div>
+
+    <div class="rm-progress-box">
+        <div class="rm-progress-head">
+            <span class="rm-progress-label">Overall Progress</span>
+            <span class="rm-progress-val" id="rmProgressVal">0 / 441 tasks — 0%</span>
         </div>
-        
-        <div class="certifications">
-            <h3>📜 Certifications</h3>
-            <div class="cert-grid">
-                <div class="cert-badge">
-                    <span class="cert-icon">☁️</span>
-                    <span class="cert-name">AWS Cloud Practitioner</span>
-                </div>
-                <div class="cert-badge">
-                    <span class="cert-icon">🔧</span>
-                    <span class="cert-name">Microservice Developer</span>
-                </div>
-                <div class="cert-badge">
-                    <span class="cert-icon">🤖</span>
-                    <span class="cert-name">Azure AI Fundamentals</span>
-                </div>
+        <div class="rm-bar"><div class="rm-bar-fill" id="rmBarFill"></div></div>
+    </div>
+
+    <div class="rm-badges">
+        <div class="rm-badge rm-badge-core">CORE TRACK</div>
+        <div class="rm-badge rm-badge-ai">AI TRACK</div>
+        <div class="rm-badge rm-badge-low">LOW WEIGHT</div>
+    </div>
+
+    <!-- Daily Time Block Strip -->
+    <div class="rm-daily-strip">
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">40 min</div>
+            <div class="rm-strip-name" style="color:#1d4ed8">🔵 DSA</div>
+            <div class="rm-strip-desc">LeetCode<br>Problems</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">30 min</div>
+            <div class="rm-strip-name" style="color:#c2410c">🟠 Java / Spring</div>
+            <div class="rm-strip-desc">JVM · Boot<br>Cloud · Security</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">20 min</div>
+            <div class="rm-strip-name" style="color:#7c3aed">🟣 LLD / HLD</div>
+            <div class="rm-strip-desc">System Design<br>Architecture</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">30 min</div>
+            <div class="rm-strip-name" style="color:#15803d">🟢 Coding Lab</div>
+            <div class="rm-strip-desc">Implement<br>& Experiment</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">30 min</div>
+            <div class="rm-strip-name" style="color:#db2777">🔴 AI Engineering</div>
+            <div class="rm-strip-desc">RAG · Agents<br>LLM Ops</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">30 min</div>
+            <div class="rm-strip-name" style="color:#a16207">🟡 Project Dev</div>
+            <div class="rm-strip-desc">Build · Ship<br>Portfolio</div>
+        </div>
+        <div class="rm-strip-slot">
+            <div class="rm-strip-time">30 min</div>
+            <div class="rm-strip-name" style="color:#475569">⚪ Flex Slot</div>
+            <div class="rm-strip-desc">Frontend<br>Review / Catchup</div>
+        </div>
+    </div>
+
+    <!-- Week cards rendered by JS -->
+    <div class="rm-week-list" id="rmWeekList"></div>
+
+</div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+<div class="container">
+    <h2>Education</h2>
+    <div class="education-container">
+        <div class="education-card">
+            <div class="education-icon">🎓</div>
+            <h3>Bachelor of Technology</h3>
+            <h4>Electronics and Communication Engineering</h4>
+            <p class="education-institution">K L University, Vijayawada</p>
+            <p class="education-duration">June 2018 – April 2022</p>
+            <div class="education-highlights"><p>Focused on signal processing, embedded systems, and communication technologies with strong programming skills in Java and C++.</p></div>
+        </div>
+        <div class="education-extras">
+            <div class="extra-column">
+                <h3>🏆 Leadership</h3>
+                <ul class="extra-list">
+                    <li>Technical Team Lead – College Tech Fest 2021</li>
+                    <li>Project Coordinator – Final Year Capstone</li>
+                    <li>Mentored juniors in programming workshops</li>
+                    <li>Organized coding bootcamps for 100+ students</li>
+                </ul>
+            </div>
+            <div class="extra-column">
+                <h3>⭐ Extra Curricular</h3>
+                <ul class="extra-list">
+                    <li>Active member of University Coding Club</li>
+                    <li>Participated in Smart India Hackathon</li>
+                    <li>Volunteer at tech workshops and seminars</li>
+                    <li>Sports: Cricket team member</li>
+                </ul>
             </div>
         </div>
     </div>
+    <div class="certifications">
+        <h3>📜 Certifications</h3>
+        <div class="cert-grid">
+            <div class="cert-badge"><span class="cert-icon">☁️</span><span class="cert-name">AWS Cloud Practitioner</span></div>
+            <div class="cert-badge"><span class="cert-icon">🔧</span><span class="cert-name">Microservice Developer</span></div>
+            <div class="cert-badge"><span class="cert-icon">🤖</span><span class="cert-name">Azure AI Fundamentals</span></div>
+        </div>
+    </div>
+</div>
 </section>
 
-
-<!-- Contact Section -->
+<!-- CONTACT -->
 <section class="contact" id="contact">
 <div class="container">
     <h2>Get In Touch</h2>
     <div class="contact-content">
-        <p>I'm passionate about building scalable solutions and always interested in new opportunities. Whether you have a challenging project, need technical expertise, or want to discuss potential collaboration, feel free to reach out!</p>
+        <p>I'm passionate about building scalable solutions and always interested in new opportunities. Feel free to reach out!</p>
         <div class="contact-info">
             <a href="mailto:aleempasha2772@gmail.com" class="contact-item">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                </svg>
+                <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                 aleempasha2772@gmail.com
             </a>
             <a href="tel:+917780433243" class="contact-item">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                </svg>
+                <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
                 +91 7780433243
             </a>
             <a href="https://www.linkedin.com/in/aleempasha21b166186/" class="contact-item">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .4C4.698.4.4 4.698.4 10s4.298 9.6 9.6 9.6 9.6-4.298 9.6-9.6S15.302.4 10 .4zM7.65 13.979H5.706V7.723H7.65v6.256zm-.984-7.024c-.614 0-1.011-.435-1.011-.973 0-.549.409-.971 1.036-.971s1.011.422 1.023.971c0 .538-.396.973-1.048.973zm8.084 7.024h-1.944v-3.467c0-.807-.282-1.355-.985-1.355-.537 0-.856.371-.997.728-.052.127-.065.307-.065.486v3.607H8.814v-4.26c0-.781-.025-1.434-.051-1.996h1.689l.089.869h.039c.256-.408.883-1.01 1.932-1.01 1.279 0 2.238.857 2.238 2.699v3.699z"></path>
-                </svg>
+                <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 .4C4.698.4.4 4.698.4 10s4.298 9.6 9.6 9.6 9.6-4.298 9.6-9.6S15.302.4 10 .4zM7.65 13.979H5.706V7.723H7.65v6.256zm-.984-7.024c-.614 0-1.011-.435-1.011-.973 0-.549.409-.971 1.036-.971s1.011.422 1.023.971c0 .538-.396.973-1.048.973zm8.084 7.024h-1.944v-3.467c0-.807-.282-1.355-.985-1.355-.537 0-.856.371-.997.728-.052.127-.065.307-.065.486v3.607H8.814v-4.26c0-.781-.025-1.434-.051-1.996h1.689l.089.869h.039c.256-.408.883-1.01 1.932-1.01 1.279 0 2.238.857 2.238 2.699v3.699z"></path></svg>
                 LinkedIn
             </a>
             <a href="https://github.com/aleempasha2772" class="contact-item">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"></path>
-                </svg>
+                <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"></path></svg>
                 GitHub
             </a>
         </div>
@@ -1218,69 +1281,1097 @@ footer {
 </div>
 </section>
 
-<!-- Footer -->
-<footer>
-<p>&copy; 2024 Aleem Pasha. All rights reserved. | B.Tech ECE, K L University | AWS Certified | Built with ❤️</p>
-</footer>
+<!-- ============================================
+     ROADMAP / TIMETABLE SECTION
+     ============================================ -->
+<section class="roadmap-section" id="roadmap">
+<div class="container">
+    <h2>9-Week AI Engineer Roadmap</h2>
+    <p class="roadmap-tagline">Java Backend · System Design · AI Engineering · 3.5 hrs / day · 63 days</p>
+
+    <!-- Daily Schedule -->
+    <p class="schedule-label">Daily Time Blocks — 210 min</p>
+    <div class="daily-schedule">
+        <div class="schedule-block sb-dsa">
+            <div class="sb-time">40 min</div>
+            <div class="sb-label dsa-c">DSA</div>
+            <div class="sb-desc">LeetCode<br>Algorithms</div>
+        </div>
+        <div class="schedule-block sb-java">
+            <div class="sb-time">30 min</div>
+            <div class="sb-label java-c">Java / Spring</div>
+            <div class="sb-desc">JVM · Boot<br>Cloud · Security</div>
+        </div>
+        <div class="schedule-block sb-lld">
+            <div class="sb-time">20 min</div>
+            <div class="sb-label lld-c">LLD / HLD</div>
+            <div class="sb-desc">System Design<br>Architecture</div>
+        </div>
+        <div class="schedule-block sb-code">
+            <div class="sb-time">30 min</div>
+            <div class="sb-label code-c">Coding Lab</div>
+            <div class="sb-desc">Implement<br>& Experiment</div>
+        </div>
+        <div class="schedule-block sb-ai">
+            <div class="sb-time">30 min</div>
+            <div class="sb-label ai-c">AI Engineering</div>
+            <div class="sb-desc">RAG · Agents<br>LLM Ops</div>
+        </div>
+        <div class="schedule-block sb-proj">
+            <div class="sb-time">30 min</div>
+            <div class="sb-label proj-c">Project Dev</div>
+            <div class="sb-desc">Build · Ship<br>Portfolio</div>
+        </div>
+        <div class="schedule-block sb-flex">
+            <div class="sb-time">30 min</div>
+            <div class="sb-label flex-c">Flex Slot</div>
+            <div class="sb-desc">Frontend<br>Review · Catch-up</div>
+        </div>
+    </div>
+
+    <!-- 9 Week Phases -->
+    <p class="rm-subheader">9-Week Phase Overview</p>
+    <div class="phases-grid">
+        <div class="phase-card ph-1">
+            <div class="phase-week">Week 1</div>
+            <div class="phase-title">Trees + Arrays · RAG Foundations</div>
+            <div class="phase-tags">
+                <span class="phase-tag">JVM Internals</span>
+                <span class="phase-tag">GC Algorithms</span>
+                <span class="phase-tag">RAG Pipeline</span>
+                <span class="phase-tag">Vector DBs</span>
+                <span class="phase-tag">Load Balancer</span>
+            </div>
+            <div class="phase-problems">📌 Longest Consecutive · Min Window Substring · Validate BST · Kth Smallest BST · Binary Tree Max Path · Serialize BT</div>
+        </div>
+        <div class="phase-card ph-2">
+            <div class="phase-week">Week 2</div>
+            <div class="phase-title">Graph BFS/DFS · LangChain + ReAct</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Concurrency</span>
+                <span class="phase-tag">Kafka</span>
+                <span class="phase-tag">LangChain</span>
+                <span class="phase-tag">ReAct Agent</span>
+                <span class="phase-tag">Tool Calling</span>
+            </div>
+            <div class="phase-problems">📌 Islands · Clone Graph · Pacific Atlantic · Course Schedule · Graph Valid Tree · Connected Components</div>
+        </div>
+        <div class="phase-card ph-3">
+            <div class="phase-week">Week 3</div>
+            <div class="phase-title">Backtracking + Tries · Agentic Patterns</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Spring DI/AOP</span>
+                <span class="phase-tag">OAuth2</span>
+                <span class="phase-tag">LangGraph</span>
+                <span class="phase-tag">Escalation Logic</span>
+                <span class="phase-tag">Agent Memory</span>
+            </div>
+            <div class="phase-problems">📌 Alien Dict · Combination Sum · Word Search · Implement Trie · Add&Search Words · Word Search II</div>
+        </div>
+        <div class="phase-card ph-4">
+            <div class="phase-week">Week 4</div>
+            <div class="phase-title">Intervals + Greedy · Multi-Agent + MCP</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Docker</span>
+                <span class="phase-tag">Kubernetes</span>
+                <span class="phase-tag">CrewAI</span>
+                <span class="phase-tag">AutoGen</span>
+                <span class="phase-tag">A2A Protocol</span>
+            </div>
+            <div class="phase-problems">📌 Insert Interval · Merge Intervals · Non-Overlapping · Meeting Rooms I · Meeting Rooms II · Max Subarray</div>
+        </div>
+        <div class="phase-card ph-5">
+            <div class="phase-week">Week 5</div>
+            <div class="phase-title">2D DP · Finetuning (LoRA / QLoRA)</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Spring Cloud</span>
+                <span class="phase-tag">ElasticSearch</span>
+                <span class="phase-tag">LoRA</span>
+                <span class="phase-tag">QLoRA</span>
+                <span class="phase-tag">Axolotl</span>
+            </div>
+            <div class="phase-problems">📌 Jump Game · Longest Palindromic Sub · Palindromic Substrings · Unique Paths · Longest Common Subseq</div>
+        </div>
+        <div class="phase-card ph-6">
+            <div class="phase-week">Week 6</div>
+            <div class="phase-title">Math/Geometry + Bit Ops · Model Optimization</div>
+            <div class="phase-tags">
+                <span class="phase-tag">gRPC</span>
+                <span class="phase-tag">WebFlux</span>
+                <span class="phase-tag">Quantization</span>
+                <span class="phase-tag">vLLM</span>
+                <span class="phase-tag">Pruning</span>
+            </div>
+            <div class="phase-problems">📌 Rotate Image · Spiral Matrix · Set Matrix Zeroes · Counting Bits · Reverse Bits · Missing Number</div>
+        </div>
+        <div class="phase-card ph-7">
+            <div class="phase-week">Week 7</div>
+            <div class="phase-title">Model Context Protocol · Mock Rounds Begin</div>
+            <div class="phase-tags">
+                <span class="phase-tag">MCP Servers</span>
+                <span class="phase-tag">IDE Integration</span>
+                <span class="phase-tag">Reflection Agent</span>
+                <span class="phase-tag">Plan & Execute</span>
+            </div>
+            <div class="phase-problems">📌 Sum of Two Integers · Mock Hard: Graph · Mock Hard: DP · Mock: Sliding Window · Mock: Backtracking</div>
+        </div>
+        <div class="phase-card ph-8">
+            <div class="phase-week">Week 8</div>
+            <div class="phase-title">Full Revision · System Design Deep Dives</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Kafka Deep Dive</span>
+                <span class="phase-tag">Event Sourcing</span>
+                <span class="phase-tag">LLM Ops</span>
+                <span class="phase-tag">Guardrails</span>
+                <span class="phase-tag">NeMo</span>
+            </div>
+            <div class="phase-problems">📌 Timed Combos: Graph+DP · Bit+Math · Tree+Graph · DP+Greedy · Sliding Window+Backtracking</div>
+        </div>
+        <div class="phase-card ph-9">
+            <div class="phase-week">Week 9</div>
+            <div class="phase-title">Mock Interviews · Capstone Polish · Portfolio</div>
+            <div class="phase-tags">
+                <span class="phase-tag">Mock DSA</span>
+                <span class="phase-tag">Mock HLD</span>
+                <span class="phase-tag">Mock AI</span>
+                <span class="phase-tag">GitHub Portfolio</span>
+                <span class="phase-tag">Demo Videos</span>
+            </div>
+            <div class="phase-problems">📌 Full mock rounds · System design interviews · AI engineering Q&A · Deploy & share all 3 projects</div>
+        </div>
+    </div>
+
+    <!-- 3 Capstone Projects -->
+    <p class="rm-subheader">3 Capstone Projects</p>
+    <div class="capstone-grid">
+        <div class="capstone-card">
+            <div class="capstone-num" style="background: linear-gradient(135deg,#00cfff,#0077b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">01</div>
+            <div class="capstone-title">AI Documentation Assistant</div>
+            <div class="capstone-weeks">Weeks 1 – 3</div>
+            <div class="capstone-stack">
+                <span class="cap-tech cap-c1">FastAPI</span>
+                <span class="cap-tech cap-c1">LangChain</span>
+                <span class="cap-tech cap-c1">Chroma</span>
+                <span class="cap-tech cap-c1">OpenAI</span>
+                <span class="cap-tech cap-c1">Redis</span>
+            </div>
+            <ul class="capstone-features">
+                <li>PDF ingestion + semantic chunking pipeline</li>
+                <li>Hybrid search (BM25 + Vector) with reranking</li>
+                <li>Query rewriting + RAGAS evaluation</li>
+                <li>Streaming responses via FastAPI</li>
+            </ul>
+        </div>
+        <div class="capstone-card">
+            <div class="capstone-num" style="background: linear-gradient(135deg,#f472b6,#db2777); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">02</div>
+            <div class="capstone-title">Autonomous Customer Support Agent</div>
+            <div class="capstone-weeks">Weeks 3 – 6</div>
+            <div class="capstone-stack">
+                <span class="cap-tech cap-c2">LangGraph</span>
+                <span class="cap-tech cap-c2">RAG Tools</span>
+                <span class="cap-tech cap-c2">Memory</span>
+                <span class="cap-tech cap-c2">Guardrails</span>
+            </div>
+            <ul class="capstone-features">
+                <li>ReAct loop with 4 specialized tools</li>
+                <li>Short-term + vector memory layers</li>
+                <li>Escalation node with routing logic</li>
+                <li>NeMo guardrails for safe responses</li>
+            </ul>
+        </div>
+        <div class="capstone-card">
+            <div class="capstone-num" style="background: linear-gradient(135deg,#34d399,#059669); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">03</div>
+            <div class="capstone-title">Multi-Agent AI System</div>
+            <div class="capstone-weeks">Weeks 7 – 9</div>
+            <div class="capstone-stack">
+                <span class="cap-tech cap-c3">LangGraph</span>
+                <span class="cap-tech cap-c3">CrewAI</span>
+                <span class="cap-tech cap-c3">MCP</span>
+                <span class="cap-tech cap-c3">vLLM</span>
+                <span class="cap-tech cap-c3">K8s</span>
+            </div>
+            <ul class="capstone-features">
+                <li>Planner → Researcher → Coder → Reviewer agents</li>
+                <li>MCP server connecting IDE to LLM</li>
+                <li>Agent-to-Agent (A2A) communication</li>
+                <li>Deployed on Kubernetes with monitoring</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- LeetCode Tracker -->
+    <p class="rm-subheader">34 Remaining LeetCode Problems — By Category</p>
+    <div class="lc-tracker">
+        <div class="lc-stats">
+            <div class="lc-stat"><div class="lc-stat-num">42</div><div class="lc-stat-label">Done</div></div>
+            <div class="lc-stat"><div class="lc-stat-num">34</div><div class="lc-stat-label">Remaining</div></div>
+            <div class="lc-stat"><div class="lc-stat-num">76</div><div class="lc-stat-label">Total NeetCode</div></div>
+            <div class="lc-stat"><div class="lc-stat-num">55%</div><div class="lc-stat-label">Complete</div></div>
+        </div>
+        <div class="lc-progress-bar"><div class="lc-progress-fill"></div></div>
+        <div class="lc-categories">
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#00cfff;"></div>
+                <div>
+                    <div class="lc-cat-name">Arrays & Sliding Window</div>
+                    <div class="lc-cat-problems">Longest Consecutive Sequence · Minimum Window Substring</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#a78bfa;"></div>
+                <div>
+                    <div class="lc-cat-name">Trees (5 problems)</div>
+                    <div class="lc-cat-problems">Validate BST · Kth Smallest BST · Construct Binary Tree · Binary Tree Max Path Sum · Serialize & Deserialize BT</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#34d399;"></div>
+                <div>
+                    <div class="lc-cat-name">Graphs (7 problems)</div>
+                    <div class="lc-cat-problems">Islands · Clone Graph · Pacific Atlantic · Course Schedule · Graph Valid Tree · Connected Components · Alien Dictionary</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#fbbf24;"></div>
+                <div>
+                    <div class="lc-cat-name">Backtracking & Tries (5 problems)</div>
+                    <div class="lc-cat-problems">Combination Sum · Word Search · Implement Trie · Add&Search Words · Word Search II</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#f472b6;"></div>
+                <div>
+                    <div class="lc-cat-name">Intervals & Greedy (6 problems)</div>
+                    <div class="lc-cat-problems">Insert Interval · Merge Intervals · Non-Overlapping · Meeting Rooms I · Meeting Rooms II · Max Subarray</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#fb923c;"></div>
+                <div>
+                    <div class="lc-cat-name">1D + 2D Dynamic Programming (5 problems)</div>
+                    <div class="lc-cat-problems">Jump Game · Longest Palindromic Sub · Palindromic Substrings · Unique Paths · Longest Common Subsequence</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#818cf8;"></div>
+                <div>
+                    <div class="lc-cat-name">Math & Geometry (3 problems)</div>
+                    <div class="lc-cat-problems">Rotate Image · Spiral Matrix · Set Matrix Zeroes</div>
+                </div>
+            </div>
+            <div class="lc-cat">
+                <div class="lc-cat-dot" style="background:#2dd4bf;"></div>
+                <div>
+                    <div class="lc-cat-name">Bit Manipulation (4 problems)</div>
+                    <div class="lc-cat-problems">Counting Bits · Reverse Bits · Missing Number · Sum of Two Integers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Engineering Topics Coverage -->
+    <p class="rm-subheader">AI Engineering Topics Coverage</p>
+    <div class="ai-topics-grid">
+        <div class="ai-topic-row"><span class="ai-topic-name">RAG: chunking · embedding · retrieval · reranking · eval</span><span class="ai-topic-weeks">Weeks 1–2</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">LangChain: chains · memory · retrieval QA</span><span class="ai-topic-weeks">Week 2</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">ReAct pattern + structured tool calling</span><span class="ai-topic-weeks">Weeks 2–3</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">LangGraph: nodes · edges · conditional routing</span><span class="ai-topic-weeks">Weeks 2–4</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Agentic patterns: ReAct · Plan & Execute · Reflection</span><span class="ai-topic-weeks">Weeks 3–5</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Agent-to-Agent (A2A) communication protocol</span><span class="ai-topic-weeks">Week 4</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Finetuning: LoRA · QLoRA · PEFT · Axolotl</span><span class="ai-topic-weeks">Week 5</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Model distillation: teacher → student pipeline</span><span class="ai-topic-weeks">Week 6</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Quantization: INT8 · INT4 · GPTQ · bitsandbytes</span><span class="ai-topic-weeks">Week 6</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">vLLM · Triton inference serving · benchmarking</span><span class="ai-topic-weeks">Week 6</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Model Context Protocol (MCP) + IDE integration</span><span class="ai-topic-weeks">Week 7</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">LLM Ops: monitoring · drift detection · guardrails</span><span class="ai-topic-weeks">Week 8</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Benchmarking: MMLU · HumanEval · RAGAS metrics</span><span class="ai-topic-weeks">Weeks 5–8</span></div>
+        <div class="ai-topic-row"><span class="ai-topic-name">Multi-modal agents: vision + text pipelines</span><span class="ai-topic-weeks">Week 7</span></div>
+    </div>
+</div>
+</section>
+
+<footer><p>© 2024 Aleem Pasha. All rights reserved. | B.Tech ECE, K L University | AWS Certified | Built with ❤️</p></footer>
 
 <script>
-// Mobile menu toggle
-function toggleMenu() {
-    const navMenu = document.getElementById('navMenu');
-    navMenu.classList.toggle('active');
+// ─── NAV ───────────────────────────────────────────────
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+document.querySelectorAll('nav a').forEach(l => l.addEventListener('click', () => document.getElementById('navMenu').classList.remove('active')));
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.padding = window.scrollY > 100 ? '0.5rem 0' : '1rem 0';
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+// ─── ROADMAP DATA ──────────────────────────────────────
+const weeks = [
+  {
+    week: 1, name: "Trees + Arrays · RAG Foundations",
+    track: "core", tags: ["JVM Internals","GC Algorithms","RAG Pipeline","Vector DBs"],
+    days: [
+      { day:1, title:"D1 — Kickoff", sub:"JVM + RAG Setup", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Longest Consecutive Sequence"},
+        {b:"Java", c:"java", t:"JVM Architecture: Heap, Stack, Metaspace, PC registers"},
+        {b:"LLD",  c:"lld",  t:"HLD: Load Balancer types and algorithms"},
+        {b:"Code", c:"code", t:"Spring Boot REST API with CRUD + JPA"},
+        {b:"AI",   c:"ai",   t:"RAG overview: indexing → chunking → embedding → retrieval → generation"},
+        {b:"Proj", c:"proj", t:"Project setup: AI Doc Assistant repo + FastAPI skeleton"},
+        {b:"Flex", c:"flex", t:"Event Loop: macro tasks vs micro tasks"},
+      ]},
+      { day:2, title:"D2 — GC Deep Dive", sub:"Embeddings + Chunking", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Minimum Window Substring (sliding window)"},
+        {b:"Java", c:"java", t:"GC Algorithms: Mark-Sweep, Copying, Mark-Compact"},
+        {b:"LLD",  c:"lld",  t:"LLD: Rate Limiter (token bucket vs leaky bucket)"},
+        {b:"Code", c:"code", t:"Spring Boot CRUD + JPA entity relationships"},
+        {b:"AI",   c:"ai",   t:"Embedding models: OpenAI ada-002, SBERT — how they work"},
+        {b:"Proj", c:"proj", t:"RAG ingestion pipeline: PDF loader + text chunker"},
+        {b:"Flex", c:"flex", t:"Task Starvation and CPU scheduling concepts"},
+      ]},
+      { day:3, title:"D3 — Collectors", sub:"Vector DBs", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Validate Binary Search Tree"},
+        {b:"Java", c:"java", t:"GC Collectors: G1GC, ZGC, Shenandoah — when to use each"},
+        {b:"LLD",  c:"lld",  t:"HLD: Consistent Hashing — ring, virtual nodes, rebalancing"},
+        {b:"Code", c:"code", t:"Spring Security basics + JWT auth filter"},
+        {b:"AI",   c:"ai",   t:"Chunking strategies: fixed-size, recursive, semantic, agentic"},
+        {b:"Proj", c:"proj", t:"Add embedding layer: generate and store vectors in Chroma"},
+        {b:"Flex", c:"flex", t:"Critical Rendering Path: HTML → CSSOM → Render Tree → Paint"},
+      ]},
+      { day:4, title:"D4 — JVM Concurrency", sub:"Hybrid Search", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Kth Smallest Element in BST"},
+        {b:"Java", c:"java", t:"JVM Concurrency: Thread pools, ReentrantLock, ReadWriteLock"},
+        {b:"LLD",  c:"lld",  t:"LLD: Elevator System (State pattern)"},
+        {b:"Code", c:"code", t:"CompletableFuture: chaining, combining, exception handling"},
+        {b:"AI",   c:"ai",   t:"Hybrid search: BM25 sparse + Vector dense — weighted scoring"},
+        {b:"Proj", c:"proj", t:"Wire retriever to LLM: query → retrieve → generate pipeline"},
+        {b:"Flex", c:"flex", t:"Layout Thrashing: forced reflows and how to avoid them"},
+      ]},
+      { day:5, title:"D5 — ForkJoin", sub:"Reranking + RAGAS", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Construct Binary Tree from Preorder and Inorder Traversal"},
+        {b:"Java", c:"java", t:"ForkJoinPool: work stealing, RecursiveTask, RecursiveAction"},
+        {b:"LLD",  c:"lld",  t:"HLD: Caching Architecture — L1/L2/L3, Redis, CDN layers"},
+        {b:"Code", c:"code", t:"Redis integration in Spring Boot: @Cacheable, TTL, eviction"},
+        {b:"AI",   c:"ai",   t:"Reranking: cross-encoder vs bi-encoder, Cohere reranker API"},
+        {b:"Proj", c:"proj", t:"Add query rewriting + reranker to doc assistant pipeline"},
+        {b:"Flex", c:"flex", t:"Virtual DOM concept: why it exists, how diffing works"},
+      ]},
+      { day:6, title:"D6 — JVM Flags", sub:"RAG Evaluation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Binary Tree Maximum Path Sum"},
+        {b:"Java", c:"java", t:"JVM flags: -Xms, -Xmx, -XX:+UseG1GC, GC log analysis"},
+        {b:"LLD",  c:"lld",  t:"LLD: LRU Cache (HashMap + Doubly Linked List)"},
+        {b:"Code", c:"code", t:"Implement LRU Cache in Java with O(1) get and put"},
+        {b:"AI",   c:"ai",   t:"RAG evaluation: RAGAS metrics — faithfulness, answer relevancy, context recall"},
+        {b:"Proj", c:"proj", t:"Add streaming responses + RAGAS evaluation to doc assistant"},
+        {b:"Flex", c:"flex", t:"Reconciliation Algorithm: React's O(n) diffing heuristics"},
+      ]},
+      { day:7, title:"D7 — Review Day", sub:"Week 1 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Serialize and Deserialize Binary Tree (review + solve)"},
+        {b:"Java", c:"java", t:"REVIEW: JVM internals, GC algorithms, collectors, flags"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: Load Balancer + Rate Limiter + LRU Cache designs"},
+        {b:"Code", c:"code", t:"Fix bugs + refactor week 1 code, add unit tests"},
+        {b:"AI",   c:"ai",   t:"REVIEW: RAG pipeline end-to-end — trace each step"},
+        {b:"Proj", c:"proj", t:"Polish doc assistant: add error handling + README"},
+        {b:"Flex", c:"flex", t:"REVIEW: Event loop + DOM + Critical Rendering Path"},
+      ]},
+    ]
+  },
+  {
+    week: 2, name: "Graph BFS/DFS · LangChain + ReAct",
+    track: "core", tags: ["Concurrency","Kafka","LangChain","ReAct Agent","Tool Calling"],
+    days: [
+      { day:8, title:"D8 — Graphs Start", sub:"Kafka + LangChain Intro", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Number of Islands (BFS + DFS both approaches)"},
+        {b:"Java", c:"java", t:"Thread states, context switching, volatile keyword"},
+        {b:"LLD",  c:"lld",  t:"HLD: Kafka architecture — broker, topic, partition, offset"},
+        {b:"Code", c:"code", t:"Kafka producer and consumer in Spring Boot"},
+        {b:"AI",   c:"ai",   t:"LangChain: Chains + PromptTemplate + output parsers"},
+        {b:"Proj", c:"proj", t:"RAG: add metadata filtering to retrieval layer"},
+        {b:"Flex", c:"flex", t:"Fiber Architecture: React's concurrent rendering model"},
+      ]},
+      { day:9, title:"D9 — AQS", sub:"Retrieval QA Chain", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Clone Graph (BFS with HashMap)"},
+        {b:"Java", c:"java", t:"AbstractQueuedSynchronizer: how locks are built internally"},
+        {b:"LLD",  c:"lld",  t:"LLD: ATM System Design"},
+        {b:"Code", c:"code", t:"Spring Kafka listener with error handling + dead letter topic"},
+        {b:"AI",   c:"ai",   t:"LangChain: RetrievalQA chain — how it wraps RAG"},
+        {b:"Proj", c:"proj", t:"Refactor doc assistant using LangChain retrieval chain"},
+        {b:"Flex", c:"flex", t:"React Reconciler: commit phase vs render phase"},
+      ]},
+      { day:10, title:"D10 — Synchronizers", sub:"Memory + ReAct Pattern", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Pacific Atlantic Water Flow (multi-source BFS)"},
+        {b:"Java", c:"java", t:"Semaphore, CountDownLatch, CyclicBarrier — when to use each"},
+        {b:"LLD",  c:"lld",  t:"HLD: Event-Driven Architecture — events, commands, sagas"},
+        {b:"Code", c:"code", t:"Kafka Streams: stateless transformations and filtering"},
+        {b:"AI",   c:"ai",   t:"LangChain memory: ConversationBufferMemory, SummaryMemory"},
+        {b:"Proj", c:"proj", t:"Add conversation history to doc assistant"},
+        {b:"Flex", c:"flex", t:"Time Slicing: how React splits work across frames"},
+      ]},
+      { day:11, title:"D11 — Memory Model", sub:"ReAct Agent Loop", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Course Schedule (cycle detection with topological sort)"},
+        {b:"Java", c:"java", t:"Java Memory Model: happens-before, visibility, ordering"},
+        {b:"LLD",  c:"lld",  t:"LLD: Splitwise design — groups, expenses, settlements"},
+        {b:"Code", c:"code", t:"Spring Boot microservice with Feign client between services"},
+        {b:"AI",   c:"ai",   t:"ReAct pattern: Reasoning + Acting loop — how agents think"},
+        {b:"Proj", c:"proj", t:"Build basic ReAct agent with 2 tools for doc assistant"},
+        {b:"Flex", c:"flex", t:"Hydration: SSR flow, client hydration, mismatch errors"},
+      ]},
+      { day:12, title:"D12 — Volatile + Deadlocks", sub:"Tool Calling", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Graph Valid Tree (Union-Find / BFS)"},
+        {b:"Java", c:"java", t:"Volatile, happens-before guarantee, double-checked locking"},
+        {b:"LLD",  c:"lld",  t:"HLD: Service Discovery — Eureka, Consul, health checks"},
+        {b:"Code", c:"code", t:"Eureka server + client registration + dynamic service lookup"},
+        {b:"AI",   c:"ai",   t:"Structured tool calling: JSON schema, OpenAI functions format"},
+        {b:"Proj", c:"proj", t:"Define tools for agent: search, calculator, date tools"},
+        {b:"Flex", c:"flex", t:"Partial Hydration: Islands Architecture for performance"},
+      ]},
+      { day:13, title:"D13 — Design Patterns", sub:"LangGraph Intro", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Number of Connected Components (Union-Find)"},
+        {b:"Java", c:"java", t:"Deadlock: detection, prevention, avoidance strategies"},
+        {b:"LLD",  c:"lld",  t:"LLD: Chess Game (State + Command pattern)"},
+        {b:"Code", c:"code", t:"Strategy + Observer patterns — implement from scratch"},
+        {b:"AI",   c:"ai",   t:"LangGraph: Nodes, Edges, State — build a simple graph"},
+        {b:"Proj", c:"proj", t:"Build LangGraph workflow for doc assistant agent"},
+        {b:"Flex", c:"flex", t:"Islands Architecture: selective hydration strategy"},
+      ]},
+      { day:14, title:"D14 — Review Day", sub:"Week 2 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: All 6 graph problems + Union-Find pattern"},
+        {b:"Java", c:"java", t:"REVIEW: Concurrency — AQS, JMM, deadlocks, synchronizers"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: Splitwise + Chess + Event-Driven designs"},
+        {b:"Code", c:"code", t:"Refactor microservice — add patterns + integration tests"},
+        {b:"AI",   c:"ai",   t:"REVIEW: ReAct pattern + LangChain + LangGraph basics"},
+        {b:"Proj", c:"proj", t:"Deploy doc assistant locally — test full pipeline"},
+        {b:"Flex", c:"flex", t:"REVIEW: Hydration types — full, partial, selective"},
+      ]},
+    ]
+  },
+  {
+    week: 3, name: "Backtracking + Tries · Agentic Patterns",
+    track: "ai", tags: ["Spring DI","OAuth2","LangGraph Routing","Agent Memory","Escalation"],
+    days: [
+      { day:15, title:"D15 — Topological Sort", sub:"API Gateway + Intent Router", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Alien Dictionary (topological sort on character graph)"},
+        {b:"Java", c:"java", t:"Spring DI: @Bean, @Component, @Service, bean lifecycle hooks"},
+        {b:"LLD",  c:"lld",  t:"HLD: API Gateway — routing, rate limiting, auth, load balancing"},
+        {b:"Code", c:"code", t:"Spring Cloud Gateway: routes + filters + predicates"},
+        {b:"AI",   c:"ai",   t:"LangGraph conditional routing: how to build intent routers"},
+        {b:"Proj", c:"proj", t:"Add intent router node to doc assistant agent"},
+        {b:"Flex", c:"flex", t:"Streaming SSR: how data streams from server to client"},
+      ]},
+      { day:16, title:"D16 — AOP", sub:"Customer Support Agent Start", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Combination Sum (backtracking with pruning)"},
+        {b:"Java", c:"java", t:"Spring AOP: @Aspect, @Around, @Before — pointcut expressions"},
+        {b:"LLD",  c:"lld",  t:"LLD: BookMyShow — seats, locks, concurrency handling"},
+        {b:"Code", c:"code", t:"Optimistic locking in JPA: @Version annotation, retry logic"},
+        {b:"AI",   c:"ai",   t:"Prompt chaining: multi-step workflows with conditional logic"},
+        {b:"Proj", c:"proj", t:"Build customer support agent skeleton with LangGraph"},
+        {b:"Flex", c:"flex", t:"SSR vs CSR tradeoffs: when to use which approach"},
+      ]},
+      { day:17, title:"D17 — OAuth2", sub:"Agent Tool Definition", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Word Search (DFS backtracking on 2D grid)"},
+        {b:"Java", c:"java", t:"Spring Boot auto-configuration: @ConditionalOn, META-INF/spring.factories"},
+        {b:"LLD",  c:"lld",  t:"HLD: OAuth 2.0 + OpenID Connect — flows, tokens, scopes"},
+        {b:"Code", c:"code", t:"Spring Security OAuth2 resource server + JWT validation"},
+        {b:"AI",   c:"ai",   t:"Agents: tool definition syntax + execution loop architecture"},
+        {b:"Proj", c:"proj", t:"Add 4 tools to support agent: search, order lookup, refund, escalate"},
+        {b:"Flex", c:"flex", t:"Memoization pitfalls: useMemo over-use, stale closures"},
+      ]},
+      { day:18, title:"D18 — Trie", sub:"RAG as Agent Tool", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Implement Trie Prefix Tree (insert, search, startsWith)"},
+        {b:"Java", c:"java", t:"Spring Data JPA: N+1 problem, fetch joins, @EntityGraph"},
+        {b:"LLD",  c:"lld",  t:"LLD: Rate Limiter — token bucket implementation"},
+        {b:"Code", c:"code", t:"Implement token bucket rate limiter in Spring filter"},
+        {b:"AI",   c:"ai",   t:"RAG as agent tool: plug retrieval into tool-calling framework"},
+        {b:"Proj", c:"proj", t:"Integrate RAG retrieval as a tool in support agent"},
+        {b:"Flex", c:"flex", t:"Structural Sharing in immutable data — why React needs it"},
+      ]},
+      { day:19, title:"D19 — Trie II", sub:"Escalation Logic", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Design Add and Search Words (Trie with wildcard '.')"},
+        {b:"Java", c:"java", t:"@Transactional: propagation, isolation, rollback rules"},
+        {b:"LLD",  c:"lld",  t:"HLD: Notification System — fan-out, push vs pull, channels"},
+        {b:"Code", c:"code", t:"Event publisher + listener pattern in Spring"},
+        {b:"AI",   c:"ai",   t:"Escalation logic in agents: conditions, thresholds, handoff"},
+        {b:"Proj", c:"proj", t:"Add escalation node + human handoff to support agent"},
+        {b:"Flex", c:"flex", t:"Immutable data patterns: Object.freeze, spread, Immer"},
+      ]},
+      { day:20, title:"D20 — Trie + Backtrack", sub:"Agent Memory Layers", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Word Search II (Trie + DFS backtracking combined)"},
+        {b:"Java", c:"java", t:"Transaction management: Saga pattern for distributed txns"},
+        {b:"LLD",  c:"lld",  t:"LLD: Food Delivery System — order lifecycle, state machine"},
+        {b:"Code", c:"code", t:"Saga choreography: events + compensating transactions"},
+        {b:"AI",   c:"ai",   t:"Agent memory: short-term buffer, long-term vector store, episodic"},
+        {b:"Proj", c:"proj", t:"Add memory to support agent: ConversationBuffer + vector store"},
+        {b:"Flex", c:"flex", t:"useReducer vs useState: when to reach for each one"},
+      ]},
+      { day:21, title:"D21 — Review Day", sub:"Week 3 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: Alien Dict + Backtracking + all 3 Trie problems"},
+        {b:"Java", c:"java", t:"REVIEW: Spring DI, AOP, auto-config, transactions"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: API Gateway + Notifications + Food Delivery"},
+        {b:"Code", c:"code", t:"End-to-end test microservices with Testcontainers"},
+        {b:"AI",   c:"ai",   t:"REVIEW: Agentic patterns — ReAct, tools, escalation, memory"},
+        {b:"Proj", c:"proj", t:"Polish support agent: add tests + write README"},
+        {b:"Flex", c:"flex", t:"REVIEW: Memoization + immutable data + useReducer"},
+      ]},
+    ]
+  },
+  {
+    week: 4, name: "Intervals + Greedy · Multi-Agent + MCP",
+    track: "ai", tags: ["Docker","Kubernetes","CrewAI","AutoGen","A2A Protocol","MCP"],
+    days: [
+      { day:22, title:"D22 — Docker", sub:"Multi-Agent Skeleton", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Insert Interval (merge overlapping intervals)"},
+        {b:"Java", c:"java", t:"Docker: Dockerfile, layers, .dockerignore, multi-stage builds"},
+        {b:"LLD",  c:"lld",  t:"HLD: URL Shortener — hashing, collision, DB schema"},
+        {b:"Code", c:"code", t:"Dockerize Spring Boot app with multi-stage optimized Dockerfile"},
+        {b:"AI",   c:"ai",   t:"LangGraph multi-agent orchestration: supervisor pattern"},
+        {b:"Proj", c:"proj", t:"Start multi-agent project: define planner, researcher, coder agents"},
+        {b:"Flex", c:"flex", t:"React Server Components: what runs on server vs client"},
+      ]},
+      { day:23, title:"D23 — Compose", sub:"CrewAI Agents", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Merge Intervals (sort + merge overlapping)"},
+        {b:"Java", c:"java", t:"Docker Compose: multi-container setup, networks, volumes, healthcheck"},
+        {b:"LLD",  c:"lld",  t:"LLD: Snake and Ladder (Graph BFS shortest path)"},
+        {b:"Code", c:"code", t:"Docker Compose: app + Kafka + Redis + Postgres stack"},
+        {b:"AI",   c:"ai",   t:"CrewAI: roles, backstories, goals, tasks, process types"},
+        {b:"Proj", c:"proj", t:"Define CrewAI planner + researcher agents with tools"},
+        {b:"Flex", c:"flex", t:"Server vs Client component boundary in Next.js App Router"},
+      ]},
+      { day:24, title:"D24 — Kubernetes", sub:"AutoGen + MCP", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Non Overlapping Intervals (greedy, sort by end time)"},
+        {b:"Java", c:"java", t:"Kubernetes: Pods, ReplicaSets, Deployments, Services, Ingress"},
+        {b:"LLD",  c:"lld",  t:"HLD: WhatsApp architecture — WebSocket, message store, delivery receipts"},
+        {b:"Code", c:"code", t:"Deploy Spring Boot app to K8s with kubectl + YAML manifests"},
+        {b:"AI",   c:"ai",   t:"Model Context Protocol (MCP): overview, tools, resources, prompts spec"},
+        {b:"Proj", c:"proj", t:"Add coder agent to multi-agent project + wire with LangGraph"},
+        {b:"Flex", c:"flex", t:"Suspense + lazy loading: code splitting at component level"},
+      ]},
+      { day:25, title:"D25 — K8s Config", sub:"A2A Protocol", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Meeting Rooms I (sort + check overlap)"},
+        {b:"Java", c:"java", t:"K8s: ConfigMaps, Secrets, liveness/readiness probes, resource limits"},
+        {b:"LLD",  c:"lld",  t:"LLD: Ride Sharing design — driver matching, trip lifecycle"},
+        {b:"Code", c:"code", t:"Feign client + Resilience4j circuit breaker between microservices"},
+        {b:"AI",   c:"ai",   t:"Agent-to-Agent (A2A) communication: Google A2A protocol overview"},
+        {b:"Proj", c:"proj", t:"Wire agents together in LangGraph with A2A handoff"},
+        {b:"Flex", c:"flex", t:"Error boundaries in React: when and how to use them"},
+      ]},
+      { day:26, title:"D26 — K8s HPA", sub:"Reviewer Agent", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Meeting Rooms II (min heap to track end times)"},
+        {b:"Java", c:"java", t:"K8s HPA: autoscaling on CPU/memory, custom metrics"},
+        {b:"LLD",  c:"lld",  t:"HLD: Uber system design — geo-indexing, surge pricing, dispatch"},
+        {b:"Code", c:"code", t:"Resilience4j full setup: circuit breaker + retry + rate limiter"},
+        {b:"AI",   c:"ai",   t:"Reflection + self-critique pattern: agent reviews its own output"},
+        {b:"Proj", c:"proj", t:"Add reviewer agent + reflection loop to multi-agent project"},
+        {b:"Flex", c:"flex", t:"Next.js App Router mental model: layouts, pages, loading"},
+      ]},
+      { day:27, title:"D27 — Apache Camel", sub:"Weight Distribution", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Maximum Subarray (Kadane's algorithm)"},
+        {b:"Java", c:"java", t:"Apache Camel: routes, EIPs, components, Processor interface"},
+        {b:"LLD",  c:"lld",  t:"HLD: Instagram feed — fanout on write vs read, ranking"},
+        {b:"Code", c:"code", t:"Camel route: REST → transform → Kafka → DB pipeline"},
+        {b:"AI",   c:"ai",   t:"Weight distribution in LLM sampling: temperature, top-p, top-k"},
+        {b:"Proj", c:"proj", t:"Test multi-agent with real prompts, log agent decisions"},
+        {b:"Flex", c:"flex", t:"File-based routing: Next.js vs React Router comparison"},
+      ]},
+      { day:28, title:"D28 — Review Day", sub:"Week 4 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: All interval + greedy problems — 6 problems timed"},
+        {b:"Java", c:"java", t:"REVIEW: Docker + K8s + Camel stack — end to end"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: Uber + WhatsApp + URL Shortener deep dives"},
+        {b:"Code", c:"code", t:"Deploy full microservice stack to local K8s cluster"},
+        {b:"AI",   c:"ai",   t:"REVIEW: Multi-agent + MCP + A2A + reflection patterns"},
+        {b:"Proj", c:"proj", t:"Multi-agent project: basic E2E pipeline working end-to-end"},
+        {b:"Flex", c:"flex", t:"REVIEW: Next.js + Server Components + RSC patterns"},
+      ]},
+    ]
+  },
+  {
+    week: 5, name: "2D Dynamic Programming · Finetuning (LoRA / QLoRA)",
+    track: "ai", tags: ["Spring Cloud","ElasticSearch","LoRA","QLoRA","Axolotl","PEFT"],
+    days: [
+      { day:29, title:"D29 — Greedy DP", sub:"Spring Config + LoRA Theory", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Jump Game (greedy: track max reachable index)"},
+        {b:"Java", c:"java", t:"Spring Cloud Config Server: setup, refresh scope, encryption"},
+        {b:"LLD",  c:"lld",  t:"HLD: Search Engine — crawler, indexer, ranker, query processor"},
+        {b:"Code", c:"code", t:"ElasticSearch integration: index, search, filters in Spring"},
+        {b:"AI",   c:"ai",   t:"Finetuning overview: full finetuning vs PEFT — when to use each"},
+        {b:"Proj", c:"proj", t:"Add vector memory (Redis) to multi-agent project"},
+        {b:"Flex", c:"flex", t:"CSS Grid vs Flexbox: layout decision framework"},
+      ]},
+      { day:30, title:"D30 — Palindromic DP", sub:"LoRA + HuggingFace Setup", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Longest Palindromic Substring (expand around center)"},
+        {b:"Java", c:"java", t:"Circuit Breaker: CLOSED → OPEN → HALF_OPEN state transitions"},
+        {b:"LLD",  c:"lld",  t:"LLD: Cache System — generic cache with TTL + eviction policies"},
+        {b:"Code", c:"code", t:"Custom cache with TTL + LRU eviction in Java"},
+        {b:"AI",   c:"ai",   t:"LoRA: Low-Rank Adaptation — math intuition, rank, alpha, target modules"},
+        {b:"Proj", c:"proj", t:"Setup HuggingFace local env + PEFT library installation"},
+        {b:"Flex", c:"flex", t:"CSS Custom Properties: theming, dynamic values, inheritance"},
+      ]},
+      { day:31, title:"D31 — Palindrome Count", sub:"QLoRA", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Palindromic Substrings (count all palindromes — DP expand)"},
+        {b:"Java", c:"java", t:"Load balancing algorithms: Round Robin, Least Connections, IP Hash"},
+        {b:"LLD",  c:"lld",  t:"HLD: Distributed Cache (Redis Cluster) — slots, replication, failover"},
+        {b:"Code", c:"code", t:"Redis Cluster + Spring Cache abstraction: @Cacheable + @CacheEvict"},
+        {b:"AI",   c:"ai",   t:"QLoRA: quantized LoRA — 4-bit NF4, double quantization, memory savings"},
+        {b:"Proj", c:"proj", t:"Prepare finetuning dataset: format in Alpaca/ChatML style"},
+        {b:"Flex", c:"flex", t:"Responsive design: breakpoints, container queries, fluid typography"},
+      ]},
+      { day:32, title:"D32 — Unique Paths", sub:"Instruction Tuning", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Unique Paths (2D DP: grid traversal)"},
+        {b:"Java", c:"java", t:"Service mesh: Istio concepts — sidecar, traffic management, mTLS"},
+        {b:"LLD",  c:"lld",  t:"LLD: Tic Tac Toe (2D board, win detection, minimax)"},
+        {b:"Code", c:"code", t:"Factory + Builder patterns: implement for domain objects"},
+        {b:"AI",   c:"ai",   t:"Instruction tuning: dataset format, system prompts, chat templates"},
+        {b:"Proj", c:"proj", t:"Format instruction dataset for finetuning task"},
+        {b:"Flex", c:"flex", t:"CSS animations: keyframes, transitions, performance on GPU"},
+      ]},
+      { day:33, title:"D33 — LCS", sub:"Axolotl Finetuning Run", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Longest Common Subsequence (2D DP table)"},
+        {b:"Java", c:"java", t:"Spring Batch: ItemReader, ItemProcessor, ItemWriter, job configuration"},
+        {b:"LLD",  c:"lld",  t:"HLD: Recommendation System — collaborative filtering, content-based"},
+        {b:"Code", c:"code", t:"Spring Batch ETL pipeline: CSV → transform → DB"},
+        {b:"AI",   c:"ai",   t:"Axolotl: finetune Llama/Mistral with YAML config — LoRA setup"},
+        {b:"Proj", c:"proj", t:"Run finetuning job on small model (Phi-2 or TinyLlama)"},
+        {b:"Flex", c:"flex", t:"Tailwind: utility-first approach, JIT, purging unused styles"},
+      ]},
+      { day:34, title:"D34 — Review", sub:"DP + Finetuning Review", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: All DP problems — 1D + 2D — solve 3 timed"},
+        {b:"Java", c:"java", t:"REVIEW: Spring Cloud + Config + Circuit Breaker + Batch"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: Cache + Distributed systems + Recommendation design"},
+        {b:"Code", c:"code", t:"Build full REST API with Redis caching + circuit breaker"},
+        {b:"AI",   c:"ai",   t:"REVIEW: LoRA + QLoRA + instruction tuning concepts"},
+        {b:"Proj", c:"proj", t:"Evaluate finetuned model: compare outputs vs base model"},
+        {b:"Flex", c:"flex", t:"REVIEW: CSS systems — Grid, Flexbox, Custom Properties"},
+      ]},
+      { day:35, title:"D35 — Edit Distance Bonus", sub:"Model Eval Metrics", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Edit Distance (2D DP — bonus hard problem)"},
+        {b:"Java", c:"java", t:"REVIEW: Full Spring microservices stack walkthrough"},
+        {b:"LLD",  c:"lld",  t:"Mock: Design a real-time notification system end-to-end"},
+        {b:"Code", c:"code", t:"Add observability: Micrometer + Prometheus + Grafana dashboard"},
+        {b:"AI",   c:"ai",   t:"Model evaluation metrics: BLEU, ROUGE, perplexity, BERTScore"},
+        {b:"Proj", c:"proj", t:"Push multi-agent project to GitHub with full README"},
+        {b:"Flex", c:"flex", t:"Accessibility basics: ARIA roles, semantic HTML, keyboard nav"},
+      ]},
+    ]
+  },
+  {
+    week: 6, name: "Math/Geometry + Bit Ops · Model Optimization",
+    track: "ai", tags: ["gRPC","WebFlux","Quantization","vLLM","Distillation","Pruning"],
+    days: [
+      { day:36, title:"D36 — Matrix Rotation", sub:"gRPC + Distillation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Rotate Image (transpose + reverse rows — in-place)"},
+        {b:"Java", c:"java", t:"gRPC: Protocol Buffers, service definition, streaming types"},
+        {b:"LLD",  c:"lld",  t:"LLD: Vending Machine (State pattern — states and transitions)"},
+        {b:"Code", c:"code", t:"Implement gRPC server + client in Spring Boot with bidirectional streaming"},
+        {b:"AI",   c:"ai",   t:"Model distillation: teacher-student framework, soft labels, KL divergence loss"},
+        {b:"Proj", c:"proj", t:"Setup distillation pipeline notebook: LLaMA teacher → TinyLLaMA student"},
+        {b:"Flex", c:"flex", t:"Core Web Vitals: LCP, CLS, FID/INP — how to measure and improve"},
+      ]},
+      { day:37, title:"D37 — Spiral Matrix", sub:"Quantization", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Spiral Matrix (layer-by-layer traversal)"},
+        {b:"Java", c:"java", t:"Reactive programming: WebFlux, Project Reactor, Mono, Flux"},
+        {b:"LLD",  c:"lld",  t:"HLD: Payment System — idempotency, exactly-once, rollback"},
+        {b:"Code", c:"code", t:"Reactive CRUD with WebFlux + R2DBC + PostgreSQL"},
+        {b:"AI",   c:"ai",   t:"Quantization: INT8, INT4, GPTQ, AWQ, bitsandbytes — memory vs accuracy"},
+        {b:"Proj", c:"proj", t:"Quantize a 7B model with bitsandbytes 4-bit NF4"},
+        {b:"Flex", c:"flex", t:"Code splitting strategies: route-level, component-level, library splitting"},
+      ]},
+      { day:38, title:"D38 — Set Matrix Zeroes", sub:"vLLM Serving", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Set Matrix Zeroes (in-place with O(1) space trick)"},
+        {b:"Java", c:"java", t:"Spring Data Redis: caching patterns, pub/sub, sorted sets"},
+        {b:"LLD",  c:"lld",  t:"LLD: Logger System (Decorator pattern — log levels, handlers)"},
+        {b:"Code", c:"code", t:"Decorator + Builder patterns in Spring context"},
+        {b:"AI",   c:"ai",   t:"vLLM: PagedAttention, continuous batching, memory efficiency"},
+        {b:"Proj", c:"proj", t:"Deploy quantized model with vLLM — benchmark latency vs throughput"},
+        {b:"Flex", c:"flex", t:"Bundle analysis: webpack-bundle-analyzer, identifying large deps"},
+      ]},
+      { day:39, title:"D39 — Counting Bits", sub:"ELK + Pruning", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Counting Bits (DP: f(n) = f(n>>1) + (n&1))"},
+        {b:"Java", c:"java", t:"Observability: ELK Stack — Logstash, Elasticsearch, Kibana"},
+        {b:"LLD",  c:"lld",  t:"HLD: Logging & Monitoring System — structured logs, alerting"},
+        {b:"Code", c:"code", t:"Logback + MDC + distributed tracing IDs in Spring"},
+        {b:"AI",   c:"ai",   t:"Pruning: magnitude pruning, structured pruning, impact on inference speed"},
+        {b:"Proj", c:"proj", t:"Compare quantized vs pruned vs original model: quality vs speed"},
+        {b:"Flex", c:"flex", t:"HTTP caching: ETags, Cache-Control, max-age, stale-while-revalidate"},
+      ]},
+      { day:40, title:"D40 — Reverse Bits", sub:"OpenTelemetry", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Reverse Bits (bit manipulation — 32-bit integer)"},
+        {b:"Java", c:"java", t:"Distributed tracing: Jaeger + OpenTelemetry SDK in Spring Boot"},
+        {b:"LLD",  c:"lld",  t:"LLD: Inventory Management (Observer for stock alerts)"},
+        {b:"Code", c:"code", t:"OpenTelemetry: spans, traces, baggage — Spring Boot auto-instrumentation"},
+        {b:"AI",   c:"ai",   t:"Triton inference server: model backends, dynamic batching, perf analyzer"},
+        {b:"Proj", c:"proj", t:"Profile memory usage during model inference — find bottlenecks"},
+        {b:"Flex", c:"flex", t:"Service Workers: caching strategies — cache-first, network-first"},
+      ]},
+      { day:41, title:"D41 — Missing Number", sub:"KV Cache", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Missing Number (XOR trick: n XOR all indices XOR all values)"},
+        {b:"Java", c:"java", t:"Spring Boot testing: @SpringBootTest, @MockBean, Testcontainers"},
+        {b:"LLD",  c:"lld",  t:"HLD: CDN architecture — PoPs, cache invalidation, geo-routing"},
+        {b:"Code", c:"code", t:"Testcontainers: Kafka + Redis + Postgres in integration tests"},
+        {b:"AI",   c:"ai",   t:"KV cache in transformers: why it matters, memory management, eviction"},
+        {b:"Proj", c:"proj", t:"Add monitoring dashboard to vLLM serving: tokens/sec, queue depth"},
+        {b:"Flex", c:"flex", t:"PWA checklist: manifest, service worker, installability criteria"},
+      ]},
+      { day:42, title:"D42 — Review Day", sub:"Week 6 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: Math/Geometry + Bit Manipulation — 7 problems timed"},
+        {b:"Java", c:"java", t:"REVIEW: gRPC + Reactive + Observability + Testcontainers"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: Payment + CDN + Logging + Inventory designs"},
+        {b:"Code", c:"code", t:"End-to-end test full microservice app with all infra"},
+        {b:"AI",   c:"ai",   t:"REVIEW: Distillation + Quantization + Pruning + vLLM"},
+        {b:"Proj", c:"proj", t:"Finalize multi-agent project — all 3 agents working together"},
+        {b:"Flex", c:"flex", t:"REVIEW: Web performance + caching strategies + PWA"},
+      ]},
+    ]
+  },
+  {
+    week: 7, name: "Model Context Protocol · Mock Rounds Begin",
+    track: "ai", tags: ["MCP Servers","IDE Integration","Plan & Execute","Self-Critique","TypeScript"],
+    days: [
+      { day:43, title:"D43 — Bit Add", sub:"MCP Overview", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Sum of Two Integers (bit addition: XOR + carry loop)"},
+        {b:"Java", c:"java", t:"Spring Security: method-level security, @PreAuthorize, SpEL"},
+        {b:"LLD",  c:"lld",  t:"Mock LLD: Design Twitter — tweet, follow, timeline, trending"},
+        {b:"Code", c:"code", t:"Implement Observer pattern from scratch with generics"},
+        {b:"AI",   c:"ai",   t:"Model Context Protocol (MCP): architecture, tools, resources, prompts spec"},
+        {b:"Proj", c:"proj", t:"Add MCP server to support agent — expose DB as resource"},
+        {b:"Flex", c:"flex", t:"TypeScript: advanced types, generics, conditional types"},
+      ]},
+      { day:44, title:"D44 — Mock Hard Graph", sub:"MCP + Claude Desktop", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: Hard Graph problem — solve in 40 min (timed)"},
+        {b:"Java", c:"java", t:"Spring Boot Admin + custom health indicators + metrics"},
+        {b:"LLD",  c:"lld",  t:"Mock HLD: Design YouTube — upload, encoding, CDN, recommendations"},
+        {b:"Code", c:"code", t:"Spring Actuator: custom endpoints, health groups, info endpoint"},
+        {b:"AI",   c:"ai",   t:"MCP: connect IDE tool to Claude using Claude Desktop config"},
+        {b:"Proj", c:"proj", t:"Test MCP server with Claude Desktop — real tool integration"},
+        {b:"Flex", c:"flex", t:"TypeScript: mapped types, utility types (Partial, Pick, Record)"},
+      ]},
+      { day:45, title:"D45 — Mock Hard DP", sub:"MCP IDE Tool", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: Hard DP problem — solve in 40 min (timed)"},
+        {b:"Java", c:"java", t:"Rate limiting: token bucket implementation in Spring filter"},
+        {b:"LLD",  c:"lld",  t:"Mock LLD: Design Notification System — multi-channel, templates"},
+        {b:"Code", c:"code", t:"Implement token bucket rate limiter as Spring filter"},
+        {b:"AI",   c:"ai",   t:"Build MCP tool: expose file system operations to Claude"},
+        {b:"Proj", c:"proj", t:"Wire MCP tools into support agent — test file + DB access"},
+        {b:"Flex", c:"flex", t:"TypeScript: decorators, metadata reflection API"},
+      ]},
+      { day:46, title:"D46 — Mock Sliding Window", sub:"Reflection + Self-Critique", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: Hard Sliding Window problem — solve in 40 min (timed)"},
+        {b:"Java", c:"java", t:"API versioning: URL path, header-based, content negotiation"},
+        {b:"LLD",  c:"lld",  t:"Mock HLD: Design Distributed Cache — Memcached vs Redis cluster"},
+        {b:"Code", c:"code", t:"Write OpenAPI spec + generate client with openapi-generator"},
+        {b:"AI",   c:"ai",   t:"Agentic loops: reflection — agent critiques and revises its own answer"},
+        {b:"Proj", c:"proj", t:"Add self-critique node to multi-agent project"},
+        {b:"Flex", c:"flex", t:"React Query: server state, stale time, background refetch"},
+      ]},
+      { day:47, title:"D47 — Mock Backtracking", sub:"Plan & Execute", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: Hard Backtracking problem — solve in 40 min (timed)"},
+        {b:"Java", c:"java", t:"Spring Boot + OAuth2: full flow — auth server, resource server, PKCE"},
+        {b:"LLD",  c:"lld",  t:"Mock LLD: Rate Limiter class design — sliding window log"},
+        {b:"Code", c:"code", t:"OAuth2 login + resource server + JWT refresh flow demo"},
+        {b:"AI",   c:"ai",   t:"Plan & Execute agent: planner generates task list, executor runs each"},
+        {b:"Proj", c:"proj", t:"Build plan-execute loop in LangGraph for multi-agent project"},
+        {b:"Flex", c:"flex", t:"Zustand vs Redux: state scope, complexity, when to use which"},
+      ]},
+      { day:48, title:"D48 — Mock Trie", sub:"Multi-Modal Agents", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: Word Search II — Trie + Backtracking (40 min timed)"},
+        {b:"Java", c:"java", t:"Eventual consistency: BASE vs ACID, conflict resolution strategies"},
+        {b:"LLD",  c:"lld",  t:"Mock HLD: Design Ride-Sharing system end-to-end"},
+        {b:"Code", c:"code", t:"CQRS pattern: separate read and write models in Spring"},
+        {b:"AI",   c:"ai",   t:"Multi-modal agents: vision + text — GPT-4V in agent pipeline"},
+        {b:"Proj", c:"proj", t:"Test GPT-4V tool in agent: analyze screenshots, generate code"},
+        {b:"Flex", c:"flex", t:"React Testing Library: queries, user events, async testing"},
+      ]},
+      { day:49, title:"D49 — Review Day", sub:"Week 7 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: All 5 mock problems + analyze time/space complexity"},
+        {b:"Java", c:"java", t:"REVIEW: Advanced Spring patterns — security, versioning, OAuth2"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: All mock HLD + LLD designs from week 7"},
+        {b:"Code", c:"code", t:"Code review: clean up all codebase, SonarQube scan"},
+        {b:"AI",   c:"ai",   t:"REVIEW: MCP + agentic patterns + multi-modal agents"},
+        {b:"Proj", c:"proj", t:"Prepare project demos — record 2-min walkthroughs"},
+        {b:"Flex", c:"flex", t:"REVIEW: TypeScript advanced types + React patterns"},
+      ]},
+    ]
+  },
+  {
+    week: 8, name: "Full Revision · System Design Deep Dives",
+    track: "core", tags: ["Kafka Deep Dive","Event Sourcing","LLM Ops","Guardrails","Benchmarking"],
+    days: [
+      { day:50, title:"D50 — Timed 2 Mediums", sub:"Netflix HLD + Drift Detection", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: solve 2 LC mediums in 40 min — focus on speed"},
+        {b:"Java", c:"java", t:"Kafka deep dive: partitions, offsets, consumer groups, rebalancing"},
+        {b:"LLD",  c:"lld",  t:"Full HLD: Design Netflix — CDN, encoding, recommendation, A/B"},
+        {b:"Code", c:"code", t:"Kafka exactly-once semantics with transactions in Spring"},
+        {b:"AI",   c:"ai",   t:"LLM Ops: production monitoring — token usage, latency, cost tracking"},
+        {b:"Proj", c:"proj", t:"Add structured logging + cost tracking to AI project"},
+        {b:"Flex", c:"flex", t:"Playwright: E2E testing setup, browser contexts, fixtures"},
+      ]},
+      { day:51, title:"D51 — Graph + DP Combo", sub:"Prompt Injection Defenses", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: Graph + DP combination problem (40 min)"},
+        {b:"Java", c:"java", t:"Saga pattern: choreography vs orchestration — when to use each"},
+        {b:"LLD",  c:"lld",  t:"Full LLD: Design Chess — complete with all patterns"},
+        {b:"Code", c:"code", t:"Implement Chess with Command + State + Observer + Iterator"},
+        {b:"AI",   c:"ai",   t:"Prompt injection attacks: types, defenses, input sanitization"},
+        {b:"Proj", c:"proj", t:"Harden support agent against adversarial inputs"},
+        {b:"Flex", c:"flex", t:"Playwright: write E2E tests — login, form submission, navigation"},
+      ]},
+      { day:52, title:"D52 — Bit + Math Combo", sub:"Twitter HLD + Guardrails", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: Bit + Math combination problem (40 min)"},
+        {b:"Java", c:"java", t:"Event sourcing: event store, snapshots, replay, projections"},
+        {b:"LLD",  c:"lld",  t:"Full HLD: Design Twitter — timeline, fanout, trending, search"},
+        {b:"Code", c:"code", t:"CQRS + Event Sourcing: implement with Spring + Axon (or custom)"},
+        {b:"AI",   c:"ai",   t:"Guardrails for LLMs: NeMo Guardrails — rails, flows, colang"},
+        {b:"Proj", c:"proj", t:"Add NeMo guardrails to support agent — test safety rails"},
+        {b:"Flex", c:"flex", t:"Cypress vs Playwright: philosophy, DX, parallelism differences"},
+      ]},
+      { day:53, title:"D53 — Tree + Graph Combo", sub:"BookMyShow LLD + AI Safety", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: Tree + Graph combination problem (40 min)"},
+        {b:"Java", c:"java", t:"Blue-green + canary deployments in Kubernetes"},
+        {b:"LLD",  c:"lld",  t:"Full LLD: BookMyShow — seat locking, payment, concurrency"},
+        {b:"Code", c:"code", t:"K8s rolling update + blue-green deployment YAML demo"},
+        {b:"AI",   c:"ai",   t:"AI safety basics: alignment, constitutional AI, RLHF overview"},
+        {b:"Proj", c:"proj", t:"Final review of all 3 AI projects — identify gaps"},
+        {b:"Flex", c:"flex", t:"WCAG 2.1 checklist: perceivable, operable, understandable, robust"},
+      ]},
+      { day:54, title:"D54 — DP + Greedy Combo", sub:"Google Drive HLD", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: DP + Greedy combination problem (40 min)"},
+        {b:"Java", c:"java", t:"Spring: Circuit breaker + retry + timeout + bulkhead — full Resilience4j setup"},
+        {b:"LLD",  c:"lld",  t:"Full HLD: Google Drive — chunked upload, sync, versioning, sharing"},
+        {b:"Code", c:"code", t:"Resilience4j: all patterns combined with fallbacks"},
+        {b:"AI",   c:"ai",   t:"Structured output with Instructor library: typed responses from LLMs"},
+        {b:"Proj", c:"proj", t:"Add structured outputs to agents using Instructor + Pydantic"},
+        {b:"Flex", c:"flex", t:"Frontend performance audit with Lighthouse CI — automate in CI"},
+      ]},
+      { day:55, title:"D55 — Sliding + Backtrack", sub:"ATM LLD + Benchmarking", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Timed: Sliding Window + Backtracking combo (40 min)"},
+        {b:"Java", c:"java", t:"Distributed locks: Redlock algorithm + Redisson implementation"},
+        {b:"LLD",  c:"lld",  t:"Full LLD: ATM Machine — card auth, transactions, concurrency"},
+        {b:"Code", c:"code", t:"Distributed lock with Redisson in Spring — test under load"},
+        {b:"AI",   c:"ai",   t:"Benchmarking LLMs: MMLU, HumanEval, MT-Bench, RAGAS in production"},
+        {b:"Proj", c:"proj", t:"Benchmark your finetuned model vs base on HumanEval subset"},
+        {b:"Flex", c:"flex", t:"Polishing UI: design system basics — tokens, spacing, typography scale"},
+      ]},
+      { day:56, title:"D56 — Review Day", sub:"Week 8 Consolidation", tasks:[
+        {b:"DSA",  c:"dsa",  t:"REVIEW: All remaining problem types — 3 timed problems"},
+        {b:"Java", c:"java", t:"REVIEW: Full microservices stack — all patterns together"},
+        {b:"LLD",  c:"lld",  t:"REVIEW: System design patterns — CQRS, Saga, Event Sourcing"},
+        {b:"Code", c:"code", t:"Deploy microservices to local K8s cluster + add observability"},
+        {b:"AI",   c:"ai",   t:"REVIEW: Full AI engineering stack — RAG → Agents → MCP → Ops"},
+        {b:"Proj", c:"proj", t:"Deploy all 3 projects to GitHub with GitHub Actions CI"},
+        {b:"Flex", c:"flex", t:"REVIEW: Full frontend stack — testing, performance, accessibility"},
+      ]},
+    ]
+  },
+  {
+    week: 9, name: "Mock Interviews · Capstone Polish · Portfolio Launch",
+    track: "core", tags: ["Mock DSA","Mock HLD","Mock AI","GitHub Portfolio","Demo Videos"],
+    days: [
+      { day:57, title:"D57 — Mock Round 1", sub:"RAG Deep Dive Interview", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock interview: 2 LC mediums in 40 min — explain while coding"},
+        {b:"Java", c:"java", t:"Mock: Spring Boot Q&A — JVM, GC, Spring internals, 15 questions"},
+        {b:"LLD",  c:"lld",  t:"Mock: Full LLD interview — Design Twitter LLD (45 min)"},
+        {b:"Code", c:"code", t:"Write design doc for best project: architecture + decisions"},
+        {b:"AI",   c:"ai",   t:"Mock AI interview: RAG questions — chunking, retrieval, eval metrics"},
+        {b:"Proj", c:"proj", t:"Write README for AI Doc Assistant + Docstring all code"},
+        {b:"Flex", c:"flex", t:"Mock frontend interview: 3 conceptual questions on rendering"},
+      ]},
+      { day:58, title:"D58 — Mock Round 2", sub:"Agentic Design Interview", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: LC Hard tree problem — solve in 40 min with explanation"},
+        {b:"Java", c:"java", t:"Mock: JVM internals Q&A — GC, memory, concurrency — 15 questions"},
+        {b:"LLD",  c:"lld",  t:"Mock: Full HLD interview — Design URL Shortener (45 min)"},
+        {b:"Code", c:"code", t:"Polish REST API docs with Swagger — all endpoints documented"},
+        {b:"AI",   c:"ai",   t:"Mock: Agentic design Q&A — ReAct, LangGraph, MCP, memory types"},
+        {b:"Proj", c:"proj", t:"Write README for Customer Support Agent + add architecture diagram"},
+        {b:"Flex", c:"flex", t:"Code challenge: implement debounce + throttle from scratch"},
+      ]},
+      { day:59, title:"D59 — Mock Round 3", sub:"LLM Optimization Interview", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: LC Hard graph problem — solve in 40 min with explanation"},
+        {b:"Java", c:"java", t:"Mock: Concurrency Q&A — deadlock, AQS, JMM — 15 questions"},
+        {b:"LLD",  c:"lld",  t:"Mock: Microservices design interview — Uber backend (45 min)"},
+        {b:"Code", c:"code", t:"Final code cleanup + SonarQube scan — fix all issues"},
+        {b:"AI",   c:"ai",   t:"Mock: LLM optimization Q&A — quantization, distillation, vLLM"},
+        {b:"Proj", c:"proj", t:"Write README for Multi-Agent System + add sequence diagrams"},
+        {b:"Flex", c:"flex", t:"Code challenge: implement virtual DOM diffing algorithm"},
+      ]},
+      { day:60, title:"D60 — Mock Round 4", sub:"Finetuning Interview", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock: LC Hard DP problem — solve in 40 min with explanation"},
+        {b:"Java", c:"java", t:"Mock: Kafka + event-driven Q&A — 15 questions"},
+        {b:"LLD",  c:"lld",  t:"Mock: Full HLD Uber interview — complete system design"},
+        {b:"Code", c:"code", t:"Add unit + integration tests to all projects — target 80% coverage"},
+        {b:"AI",   c:"ai",   t:"Mock: Finetuning + distillation Q&A — LoRA, QLoRA, PEFT"},
+        {b:"Proj", c:"proj", t:"Record demo video for each of the 3 AI projects"},
+        {b:"Flex", c:"flex", t:"Code challenge: implement Promise.all + Promise.race"},
+      ]},
+      { day:61, title:"D61 — Full Mock Contest", sub:"Full AI Engineering Round", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Mock interview contest: 2 problems timed (2 hrs total)"},
+        {b:"Java", c:"java", t:"Mock: Full Spring Boot interview round — senior level questions"},
+        {b:"LLD",  c:"lld",  t:"Mock: LLD Splitwise — design timed 45 min full solution"},
+        {b:"Code", c:"code", t:"Final microservice: add full observability stack + runbook"},
+        {b:"AI",   c:"ai",   t:"Mock: AI agents full Q&A — ReAct, CrewAI, MCP, distillation"},
+        {b:"Proj", c:"proj", t:"Push everything to GitHub portfolio — make repos public"},
+        {b:"Flex", c:"flex", t:"Mock: Full frontend conceptual interview — 5 questions"},
+      ]},
+      { day:62, title:"D62 — Weak Area Review", sub:"Final Revision", tasks:[
+        {b:"DSA",  c:"dsa",  t:"Revisit 3 weakest problem categories — 1 problem each"},
+        {b:"Java", c:"java", t:"Final Spring Boot + JVM revision notes — 1-pager summary"},
+        {b:"LLD",  c:"lld",  t:"Final HLD + LLD revision notes — patterns cheatsheet"},
+        {b:"Code", c:"code", t:"Write 1-page engineering blog post on your AI system"},
+        {b:"AI",   c:"ai",   t:"Final AI engineering revision notes — all topics 1-liner summary"},
+        {b:"Proj", c:"proj", t:"Update LinkedIn with AI projects + tag technologies"},
+        {b:"Flex", c:"flex", t:"Final frontend topics revision — 5 topic quick review"},
+      ]},
+      { day:63, title:"D63 — 🎉 Launch Day", sub:"Portfolio Live!", tasks:[
+        {b:"DSA",  c:"dsa",  t:"✅ Checklist: all 34 remaining problems solved — verify"},
+        {b:"Java", c:"java", t:"✅ Celebrate! JVM + Spring + Cloud stack complete"},
+        {b:"LLD",  c:"lld",  t:"✅ Celebrate! System design patterns mastered"},
+        {b:"Code", c:"code", t:"✅ Final commit pushed — all code clean + documented"},
+        {b:"AI",   c:"ai",   t:"✅ Celebrate! AI Engineer stack complete — RAG → MCP → LLM Ops"},
+        {b:"Proj", c:"proj", t:"🚀 Portfolio live — share with community on LinkedIn + Twitter"},
+        {b:"Flex", c:"flex", t:"✅ Celebrate! Frontend fundamentals complete"},
+      ]},
+    ]
+  },
+];
+
+// ─── ROADMAP STATE ─────────────────────────────────────
+let checked = {};
+let openWeek = null;
+let openDays = {};
+
+function totalTasks() {
+    return weeks.reduce((a, w) => a + w.days.reduce((b, d) => b + d.tasks.length, 0), 0);
+}
+function doneCount() { return Object.values(checked).filter(Boolean).length; }
+
+function updateGlobalBar() {
+    const total = totalTasks();
+    const done = doneCount();
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('rmProgressVal').textContent = `${done} / ${total} tasks — ${pct}%`;
+    document.getElementById('rmBarFill').style.width = pct + '%';
 }
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById('navMenu').classList.remove('active');
-    });
-});
+function weekDoneCount(w) {
+    return w.days.reduce((a, d) =>
+        a + d.tasks.filter(t => checked[`${w.week}-${d.day}-${t.b}`]).length, 0);
+}
+function weekTotalCount(w) {
+    return w.days.reduce((a, d) => a + d.tasks.length, 0);
+}
+function dayDoneCount(w, d) {
+    return d.tasks.filter(t => checked[`${w.week}-${d.day}-${t.b}`]).length;
+}
 
-// Add scroll effect to navigation
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-        nav.style.padding = '0.5rem 0';
-        nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        nav.style.padding = '1rem 0';
-        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    }
-});
+function toggleTask(weekId, dayId, block) {
+    const k = `${weekId}-${dayId}-${block}`;
+    checked[k] = !checked[k];
+    try { localStorage.setItem('rmChecked', JSON.stringify(checked)); } catch(e) {}
+    renderRoadmap();
+    updateGlobalBar();
+}
+function toggleWeek(weekId) {
+    openWeek = openWeek === weekId ? null : weekId;
+    if (openWeek !== weekId) openDays = {};
+    renderRoadmap();
+}
+function toggleDay(weekId, dayId) {
+    const k = `${weekId}-${dayId}`;
+    openDays[k] = !openDays[k];
+    renderRoadmap();
+}
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+function renderRoadmap() {
+    const list = document.getElementById('rmWeekList');
+    list.innerHTML = '';
+
+    weeks.forEach(w => {
+        const isOpen = openWeek === w.week;
+        const wDone = weekDoneCount(w);
+        const wTotal = weekTotalCount(w);
+        const wPct = Math.round((wDone / wTotal) * 100);
+        const isCoreDone = wPct === 100;
+
+        const card = document.createElement('div');
+        card.className = 'rm-week-card' + (isOpen ? ' open' : '');
+
+        const trackBadge = w.track === 'ai'
+            ? `<span class="rm-badge rm-badge-ai" style="font-size:0.55rem;padding:2px 7px">AI TRACK</span>`
+            : `<span class="rm-badge rm-badge-core" style="font-size:0.55rem;padding:2px 7px">CORE TRACK</span>`;
+
+        const tagHtml = w.tags.map(t =>
+            `<span class="rm-wtag ${w.track === 'ai' ? 'rm-wtag-ai' : ''}">${t}</span>`
+        ).join('');
+
+        let daysHtml = '';
+        if (isOpen) {
+            w.days.forEach(d => {
+                const dk = `${w.week}-${d.day}`;
+                const isDayOpen = !!openDays[dk];
+                const dDone = dayDoneCount(w, d);
+                const dTotal = d.tasks.length;
+                const allDone = dDone === dTotal;
+
+                const tasksHtml = d.tasks.map(t => {
+                    const k = `${w.week}-${d.day}-${t.b}`;
+                    const isDone = !!checked[k];
+                    return `
+                        <div class="rm-task ${isDone ? 'done' : ''}" onclick="toggleTask(${w.week},${d.day},'${t.b}')">
+                            <div class="rm-task-check">${isDone ? '✓' : ''}</div>
+                            <span class="rm-task-block bl-${t.c}">${t.b}</span>
+                            <span class="rm-task-text">${t.t}</span>
+                        </div>`;
+                }).join('');
+
+                daysHtml += `
+                    <div class="rm-day-card ${allDone ? 'all-done' : ''} ${isDayOpen ? 'open' : ''}">
+                        <div class="rm-day-header" onclick="toggleDay(${w.week},${d.day})">
+                            <div class="rm-day-dot">${allDone ? '✓' : 'D' + d.day}</div>
+                            <span class="rm-day-name">${d.title}</span>
+                            <span class="rm-day-sub">${d.sub}</span>
+                            <span class="rm-day-progress">${dDone}/${dTotal}</span>
+                            <span class="rm-day-arrow">▼</span>
+                        </div>
+                        <div class="rm-tasks ${isDayOpen ? 'visible' : ''}">
+                            ${tasksHtml}
+                        </div>
+                    </div>`;
             });
         }
+
+        card.innerHTML = `
+            <div class="rm-week-header" onclick="toggleWeek(${w.week})">
+                <div class="rm-week-num">W${w.week}</div>
+                <div class="rm-week-info">
+                    <div class="rm-week-label">Week ${w.week} · ${isOpen ? 'Days ' + ((w.week-1)*7+1) + '–' + (w.week*7) : '7 days'}</div>
+                    <div class="rm-week-name">${w.name}</div>
+                    <div class="rm-week-tags">${trackBadge}${tagHtml}</div>
+                </div>
+                <div class="rm-week-right">
+                    <div class="rm-week-pct ${isCoreDone ? 'done' : ''}">${wPct}% done</div>
+                    <div class="rm-week-toggle">${isOpen ? '▲' : '▼'}</div>
+                </div>
+            </div>
+            <div class="rm-week-bar">
+                <div class="rm-week-bar-fill" style="width:${wPct}%"></div>
+            </div>
+            ${isOpen ? `<div class="rm-days-container visible">${daysHtml}</div>` : ''}
+        `;
+        list.appendChild(card);
     });
+}
+
+window.addEventListener('load', () => {
+    try {
+        const s = localStorage.getItem('rmChecked');
+        if (s) checked = JSON.parse(s);
+    } catch(e) {}
+    renderRoadmap();
+    updateGlobalBar();
 });
 
-// Add animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-        }
-    });
-}, observerOptions);
-
-// Observe all sections and cards
-document.querySelectorAll('section, .skill-card, .project-card').forEach(el => {
-    observer.observe(el);
-});
+// ─── SCROLL OBSERVER ──────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.style.animation = 'fadeInUp 0.6s ease forwards'; });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('section, .skill-card, .project-card').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
