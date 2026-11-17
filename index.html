@@ -104,6 +104,23 @@ h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform
 .contact-item:hover { color: var(--primary); }
 .contact-item svg { width: 20px; height: 20px; }
 footer { background: var(--dark-blue); color: var(--white); text-align: center; padding: 2rem; }
+.contact-form-section { background: linear-gradient(180deg, var(--white) 0%, var(--lightest-blue) 100%); padding: 80px 20px; }
+.form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid rgba(144,224,239,0.5);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,119,182,0.08);
+    padding: 2rem;
+}
+.form-card p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
 .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
 .menu-toggle span { width: 25px; height: 3px; background: var(--dark-blue); margin: 3px 0; transition: 0.3s; }
 @media (max-width: 768px) {
@@ -1253,6 +1270,1011 @@ footer { background: var(--dark-blue); color: var(--white); text-align: center; 
 </div>
 </section>
 
+<!-- MESSAGE CONTENT SECTION -->
+<section class="contact-form-section" id="message">
+<div class="container">
+    <h2>Message</h2>
+    <div class="form-card">
+        <p># Google SWE Interview Prep
+
+A 12-week plan built around the rounds Google actually runs: phone screen, coding onsites, system design (L5, sometimes L4), and Googleyness & Leadership. Budget is about 2 hours on weekdays and 5–6 hours on weekend days. Tick tasks as you go; progress is saved in this browser.
+
+**First action this week:** ask your recruiter which level you're being interviewed for, and whether the loop includes a standalone system design round. That single answer decides how much time goes to system design. With \~4–5 years of experience you're likely slotted L4 or L5. If you're targeting L5, make sure the loop has system design; candidates report L4 loops being scheduled by default unless they ask.
+
+## The pipeline
+
+| Stage | Format | What it tests | Who gets it |
+| --- | --- | --- | --- |
+| Recruiter screen | 15–30 min call | Background, level, timeline | Everyone |
+| Online assessment | 2 problems, 60–90 min | Basic DSA, speed | Mostly new grads / university hiring |
+| Technical phone screen | 45 min, 1–2 problems in a shared doc, no code execution | Coding + communication | Everyone (L5 often gets two) |
+| Onsite: Coding ×2–3 | 45 min each | DSA, clean code, testing, follow-ups | Everyone |
+| Onsite: System design | 45–60 min | Architecture, trade-offs, scale | L5+ standalone; at L3/L4 usually folded into a coding round, increasingly a full round at L4 |
+| Onsite: Googleyness & Leadership | 45 min | Collaboration, ambiguity, ownership | Everyone |
+| Hiring committee | Packet review, 1–3 weeks | Your whole file, not one round | — |
+| Team matching | Calls with hiring managers | Mutual fit | After HC approval; days to months |
+
+## Loop by level
+
+**L3 / L4 loop (typical)**
+
+- 3 coding rounds
+- 1 Googleyness & Leadership
+- L4: a system design round is now common; otherwise a design-flavored follow-up inside coding
+
+**L5 loop (typical)**
+
+- 2 phone screens
+- Onsite of \~5: 2–3 coding, 1 system design, 1 Googleyness (sometimes role-related knowledge)
+- System design and Googleyness weigh heavily on whether you land L5 or get down-leveled
+
+## What every interviewer scores
+
+| Attribute | What it means in the room |
+| --- | --- |
+| **General cognitive ability** | How you attack an unfamiliar problem and use hints |
+| **Role-related knowledge** | DSA depth, code quality, design knowledge for your level |
+| **Leadership** | Driving the conversation, explaining your reasoning |
+| **Googleyness** | Comfort with ambiguity, bias to action, collaboration |
+
+**Format change since 2025:** Google has added at least one in-person round for engineering roles, to counter AI-assisted cheating in virtual interviews. Expect at least one round on a whiteboard or a plain laptop doc in a room. Practice writing code by hand, not just typing it.
+
+Coding\~70% of time System design\~15% (raise to 25% if L5) LLD\~5% Googleyness\~5% Mock\~5%
+
+Target: \~200 well-understood problems, not 500 skimmed ones. Every solved problem gets a 3-line note: pattern, key insight, mistake you made.
+
+This is the round that decides most Google loops: you get 3 coding interviews and 1–2 phone screens, all 45 minutes. Google questions are usually Medium–Hard with a **follow-up that changes the constraints** (data arrives as a stream, add cancellations, reduce space). The follow-up is where the hire/no-hire signal is.
+
+## Topic priority for Google
+
+| Tier | Topics | Why |
+| --- | --- | --- |
+| **Must be fluent** | Graphs (BFS, DFS, multi-state BFS, topo sort, Dijkstra, union-find) · arrays & strings · hashing · sliding window & two pointers · trees · heaps · intervals & sorting | Most reported Google questions land here |
+| **Must be solid** | DP (1D/2D, strings, interval, state with constraints) · tries · backtracking with memo · binary search on the answer · ordered maps (`TreeMap`) | DP isn't asked in every loop, but you can't afford to miss it |
+| **Good to have** | Segment tree / Fenwick tree · monotonic stack/deque · bit manipulation · math & simulation | Show up in Hard follow-ups |
+
+## Google-flavored problem set (LeetCode numbers)
+
+**Graphs & grids**
+
+- 200 Number of Islands · 305 Islands II (union-find)
+- 1293 Shortest Path with Obstacle Elimination (BFS + state)
+- 207/210 Course Schedule · 269 Alien Dictionary
+- 743 Network Delay · 778 Swim in Rising Water
+- 815 Bus Routes · 399 Evaluate Division
+- 329 Longest Increasing Path in a Matrix
+- 721 Accounts Merge · 127 Word Ladder
+
+**Arrays, strings, windows**
+
+- 76 Minimum Window Substring · 3 Longest Substring
+- 480 Sliding Window Median · 239 Sliding Window Max
+- 42 Trapping Rain Water · 84/85 Histogram / Maximal Rectangle
+- 560 Subarray Sum = K · 992 Subarrays with K Distinct
+- 4 Median of Two Sorted Arrays
+- 410 Split Array Largest Sum · 875 Koko (binary search on answer)
+- 315 Count of Smaller After Self (BIT / merge sort)
+
+**Trees, heaps, tries**
+
+- 236 LCA · 124 Max Path Sum · 297 Serialize/Deserialize
+- 295 Median from Data Stream · 347/692 Top K
+- 212 Word Search II · 140 Word Break II (trie + memo)
+- 642 Search Autocomplete System
+- 307 Range Sum Query Mutable (segment tree)
+
+**DP**
+
+- 72 Edit Distance · 1143 LCS · 516 Palindromic Subseq
+- 256/265 Paint House I/II (then O(k) space follow-up)
+- 312 Burst Balloons · 10/44 Regex / Wildcard
+- 322/518 Coin Change I/II · 198/213 House Robber
+- 1235 Max Profit Job Scheduling
+- 91 Decode Ways · 403 Frog Jump
+
+Also work through Google-tagged LeetCode problems from the last 6 months (Premium), and the recently reported questions on hack2hire (e.g. windowed average excluding largest K, K-distinct subarrays, domain request limits).
+
+## Practice rules
+
+- **Write in a plain Google Doc** from week 3 onward. No autocomplete, no running code. Dry-run on a small input yourself.
+- **Time limits:** \~20 min for a Medium, \~40 min for a Hard. If stuck at the limit, read the solution, then re-solve from scratch 3 days later.
+- **One language: Java.** Know `TreeMap.floorKey/ceilingKey`, `PriorityQueue` with comparators, `ArrayDeque`, `Collections` utilities without looking them up.
+- **Always ask the follow-up yourself:** "What if the input were a stream? Too big for memory? Needed concurrent access?"
+
+At L5 this is a standalone 45–60 min round and one of the most important signals for level. At L4 it's now often a full round; otherwise it shows up as a design discussion. Google interviewers lean toward **first-principles reasoning** over naming products. Say "a replicated log with consumer offsets" before you say "Kafka", and be ready to justify every component.
+
+## The 45-minute framework
+
+Requirements 5m
+
+Estimates + API 5m
+
+High-level design 10m
+
+Deep dives 20m
+
+Wrap-up 5m
+
+- **Requirements:** functional (3–4 core features), non-functional (scale, latency, consistency vs availability). Write them down.
+- **Estimates:** QPS, storage per year, read/write ratio. Round numbers; do it out loud.
+- **API + data model:** endpoints and the main tables or keys.
+- **High-level:** boxes and arrows, end to end for one request.
+- **Deep dives:** pick the 2 hardest parts (hot keys, fan-out, consistency, failure). This is where you earn L5.
+- **Wrap-up:** bottlenecks, monitoring, what you'd do with more time.
+
+## Fundamentals to own
+
+| Area | Know cold |
+| --- | --- |
+| Storage | SQL vs NoSQL, B-tree vs LSM, indexes, replication (leader/follower, quorum), sharding, consistent hashing |
+| Caching | Cache-aside vs write-through, eviction, invalidation, CDN, hot keys |
+| Async | Queues vs logs, at-least-once vs exactly-once, idempotency keys, backpressure |
+| Consistency | CAP/PACELC, strong vs eventual, leader election, consensus (Raft/Paxos at concept level) |
+| Scale | Load balancing, rate limiting, fan-out on write vs read, geo-distribution |
+| Reliability | Replication factor, failover, retries + backoff, SLOs, monitoring |
+
+Your StreamForge (MiniKafka) build is direct prep here: replication, ISR, high watermark, partitioning and consumer groups are exactly the deep-dive material interviewers probe. Use it as your example in both system design and Googleyness.
+
+## Practice questions (Google-flavored)
+
+- Search autocomplete / typeahead
+- Web crawler
+- URL shortener (warm-up)
+- Distributed rate limiter
+- Google Drive / Dropbox file sync
+- Google Docs collaborative editing
+
+- YouTube / video streaming
+- Google Maps nearby search / proximity service
+- Notification system
+- News feed
+- Distributed key-value store
+- Parking garage reservation + payments
+
+## Resources
+
+- *Designing Data-Intensive Applications* (Kleppmann): chapters 5–9 on replication, partitioning, transactions, consistency
+- *System Design Interview* Vol 1 & 2 (Alex Xu)
+- Hello Interview system design breakdowns; System Design Primer on GitHub
+
+**Important:** Google doesn't run a named "low-level design" or machine-coding round the way Amazon or Indian product companies do. LLD shows up in two places instead, so prepare it in that shape:
+
+- **Inside coding rounds:** "design a class that supports X, Y, Z", then a follow-up that changes the requirements. You write real code with clean APIs.
+- **As a code-quality signal:** naming, decomposition, helper methods, edge-case handling. Interviewers write this into feedback.
+
+Don't spend weeks on UML or parking-lot class diagrams. Spend the LLD time on the problems below.
+
+## Design-a-class problems that appear at Google
+
+| Problem | Core structure | Typical follow-up |
+| --- | --- | --- |
+| 146 LRU Cache · 460 LFU Cache | HashMap + doubly linked list | Thread safety; TTL expiry |
+| 359 Logger Rate Limiter · 362 Hit Counter | Map / circular buffer | Per-domain limits; millions of keys |
+| 729/731 My Calendar I/II (meeting booking) | `TreeMap` floor/ceiling | Support cancellation; find next free slot |
+| 981 Time-Based KV · 1146 Snapshot Array | Map of sorted lists + binary search | Memory compaction |
+| 715 Range Module | `TreeMap` of intervals | Merge on add, split on remove |
+| 855 Exam Room · 2034 Stock Price Fluctuation | TreeSet / two heaps with lazy deletion | Corrections to past data |
+| 284/281/251 Peeking / Zigzag / Flatten iterators | Iterator protocol | k iterators; nested lists |
+| 588 In-memory File System | Trie of path segments | Permissions; move/rename |
+| Token-bucket rate limiter (custom) | Bucket per key, lazy refill | Make it distributed (bridges to system design) |
+
+## Code-quality checklist for every solution
+
+- State the public API first (method signatures), then implement
+- Small private helpers with intent-revealing names
+- Validate inputs and name the edge cases out loud
+- Pick the right Java type (`long` for timestamps, `Deque` not `Stack`)
+- Say how you'd make it thread-safe, even if not asked
+
+One full 45-minute round, and at L5 it weighs heavily on level. Interviewers look for **comfort with ambiguity, bias to action, collaboration, and doing the right thing for users and the team**. Use STAR (Situation, Task, Action, Result) and keep each answer to about 2–3 minutes, with room for follow-up questions.
+
+## Build a story bank of 8 stories
+
+Pull these from your real work. Each story should be reusable for 2–3 question types. Be precise about your scope: say "I owned X" only for what you actually owned.
+
+| # | Theme | Example prompts it answers |
+| --- | --- | --- |
+| 1 | Ambiguous or unclear requirements | "Tell me about a time the goal wasn't clear" |
+| 2 | Disagreement with a teammate or lead | "You disagreed with a technical decision" |
+| 3 | A mistake you made that affected others | "Tell me about a failure" |
+| 4 | Helping a struggling teammate / mentoring | "How have you helped others grow?" |
+| 5 | Hard feedback you received | "Feedback you didn't agree with at first" |
+| 6 | Taking initiative beyond your role | "Something you did that no one asked for" |
+| 7 | Hard technical problem in production | "Your most challenging bug or incident" |
+| 8 | Prioritizing user impact over a deadline or vice versa | "A trade-off between quality and speed" |
+
+## What separates strong answers
+
+- "I" for your actions, "we" only for team outcomes
+- A concrete result: a number, a decision, or what changed afterward
+- What you learned and did differently next time
+- Credit to others, and no blaming
+- For ambiguity questions: show how you reduced it (asked, prototyped, set a decision deadline)
+
+## The 45-minute coding round
+
+Clarify 5m
+
+Approach + complexity 8m
+
+Code 20m
+
+Test 7m
+
+Follow-up 5m
+
+**Do**
+
+- Restate the problem and ask about input size, duplicates, empty input
+- Say the brute force and its complexity first, then optimize
+- Get agreement on the approach before writing code
+- Narrate while coding
+- Test with your own small example before being asked, then edge cases
+- State final time and space complexity
+- Take hints quickly and visibly
+
+**Don't**
+
+- Code silently
+- Start coding before the interviewer agrees on the approach
+- Stop at the first working solution without discussing alternatives
+- Argue with a hint
+- Leave pseudo-code where real code was expected
+- Panic over one weak round: the hiring committee looks at the whole packet
+
+## Logistics
+
+- Phone screens use a shared doc with no code execution, so practice dry-running
+- At least one round may be in person: practice on a whiteboard or paper
+- After the onsite: hiring committee (1–3 weeks), then team matching (days to months)
+
+## Sources
+
+- [IGotAnOffer: Google coding interview](https://igotanoffer.com/en/advice/google-coding-interview)
+- [DevsUnite: Google SDE interview 2026](https://devsunite.com/blog/google-sde-interview-experience-2026-rounds-questions-guide)
+- [Hack2Hire: Google coding questions](https://www.hack2hire.com/question-bank/companies/google/coding-questions)
+- [24-week Google prep gist](https://gist.github.com/carefree-ladka/6d1722421f9e1e46bd2dbdb5ea1b4684)
+- [Medium: My preparation journey for Google](https://medium.com/swlh/my-preparation-journey-for-google-interviews-f41e2dc3cdf9)
+- [GeeksforGeeks: Google SDE sheet](https://www.geeksforgeeks.org/dsa/google-sde-sheet-interview-questions-and-answers/)
+- [Exponent: Google system design interview](https://www.tryexponent.com/blog/google-system-design-interview)
+- [Hello Interview: Google L5 guide](https://www.hellointerview.com/guides/google/l5)
+- [Entrepreneur: Google brings back in-person interviews](https://www.entrepreneur.com/business-news/google-mckinsey-reintroduce-in-person-interviews-due-to-ai/496041)
+
+
+Google Software Engineer Interview Preparation Roadmap
+I recommend preparing for Google L4 Software Engineer as your primary target, with L5 as a stretch goal.
+
+The preparation should not be limited to solving LeetCode problems. Google evaluates how you approach unfamiliar problems, design software, reason about distributed systems, write maintainable code, and communicate technical decisions.
+
+Considering your 4–5 years of Java/Spring Boot experience, Kafka, microservices, AWS and backend engineering, we should build on your existing strengths while addressing the gaps in algorithmic problem-solving and interview-style design.
+
+I would structure your preparation around three pillars:
+1. Data Structures & Algorithms
+Highest priority
+
+50%
+Coding rounds, problem-solving, complexity analysis
+
+
+
+2. System Design & Distributed Systems
+30%
+HLD, scalability, reliability, databases, distributed systems
+
+
+
+3. Low-Level Design & Software Engineering
+20%
+OOP, design patterns, object modeling, extensibility, clean code
+
+
+
+These percentages are study-time allocations, not Google's official interview scoring weights.
+1. Understand the actual Google interview rounds
+The process varies by hiring level, team, location and recruiter. Based on the 2026 interview guides and candidate reports, this is the preparation model I would use.
+Typical Google SWE hiring process
+1. Recruiter screening
+   
+   15–30 minutes
+   
+   Experience, role expectations, location, level and communication.
+2. Technical phone screen
+   
+   45–60 minutes per interview
+   
+   DSA problem-solving, coding, complexity and communication.
+3. Onsite / virtual interview loop
+   
+   Typically 4–5 interviews, around 45 minutes each
+   
+   Coding, architecture/design where applicable, code comprehension in some loops, and Googleyness/Leadership.
+4. Hiring committee
+   
+   Interview feedback and hiring-level assessment.
+5. Team matching
+   
+   Discussions with potential teams before an offer.
+Sources: 2026 interview guides and candidate-reported processes. The recruiter-confirmed schedule takes precedence. 
+DevsUnite+3
+
+
+How I would prepare for each interview
+Interview	Your preparation
+Technical screen	DSA, problem-solving
+Coding round 1	Arrays, strings, hashing, trees
+Coding round 2	Graphs, recursion, backtracking, DP
+Coding round 3	Mixed medium/hard problems
+Architecture round	HLD and distributed systems
+Code comprehension	Reading, debugging and reasoning about unfamiliar code
+Googleyness	Leadership, ownership, collaboration and conflict resolution
+
+Important level distinction: L4 is a realistic target for your experience range. System design can appear in L4 loops, but a standalone architecture round is more consistently associated with experienced L5+ loops. LLD is valuable preparation, but don't assume Google has a dedicated LLD round in every SWE loop. 
+Thita.ai+3
+
+
+2. Coding / DSA preparation — the most important pillar
+I would make this your first priority.
+
+The common mistake is solving 300 random LeetCode problems without understanding the patterns. Instead, we will learn the underlying data structures and algorithms and then solve problems that exercise them.
+Phase A — Foundations
+Weeks 1–3
+Topic	Concepts to master
+Time & Space Complexity	Big O, Big Theta, Big Omega, amortized analysis
+Arrays	Traversal, prefix sum, subarrays
+Strings	Character frequency, palindrome, anagrams
+HashMap / HashSet	Hashing, collisions, lookup complexity
+Two Pointers	Opposite direction, fast/slow pointers
+Sliding Window	Fixed and variable window
+Sorting	Merge sort, quicksort, custom comparators
+Binary Search	Standard, rotated array, answer-space search
+
+Problems to practise:
+- Two Sum
+- Best Time to Buy and Sell Stock
+- Maximum Subarray
+- Longest Substring Without Repeating Characters
+- Product of Array Except Self
+- 3Sum
+- Search in Rotated Sorted Array
+- Minimum Size Subarray Sum
+Phase B — Core Data Structures
+Weeks 4–6
+Topic	Concepts to master
+Linked Lists	Reversal, cycle detection, fast/slow pointers
+Stack	Monotonic stack, expression evaluation
+Queue	BFS, deque, circular queue
+Heap	Min heap, max heap, Top K
+Binary Trees	DFS, BFS, recursive and iterative traversal
+BST	Search, insertion, validation, successor
+Trie	Prefix matching, word search
+
+Problems to practise:
+- Reverse Linked List
+- Linked List Cycle
+- LRU Cache
+- Valid Parentheses
+- Daily Temperatures
+- Kth Largest Element
+- Binary Tree Level Order Traversal
+- Lowest Common Ancestor
+- Validate Binary Search Tree
+- Implement Trie
+Phase C — Advanced Algorithms
+Weeks 7–10
+This is where we develop the problem-solving depth expected in challenging interviews.
+Topic	Concepts to master
+Recursion	Recursive thinking, call stack
+Backtracking	Subsets, permutations, combinations
+Graphs	Representation, BFS, DFS
+Topological Sort	Kahn's algorithm, DFS
+Union Find	Disjoint Set Union, path compression
+Shortest Path	Dijkstra, Bellman-Ford
+Greedy	Interval scheduling, activity selection
+Dynamic Programming	Memoization, tabulation, state transitions
+Advanced DP	Grid DP, subsequence DP, knapsack
+
+Problems to practise:
+- Number of Islands
+- Clone Graph
+- Course Schedule
+- Redundant Connection
+- Accounts Merge
+- Word Ladder
+- Network Delay Time
+- Combination Sum
+- Word Search
+- Coin Change
+- Longest Increasing Subsequence
+- Edit Distance
+- Longest Common Subsequence
+The Reddit preparation guide and GFG sheet both provide useful coverage of these data structures and algorithms. 
+Reddit+2
+
+Phase D — Google-specific problem solving
+Weeks 11–12
+Now stop learning topics in isolation.
+- Solve mixed-topic questions.
+- Practise unfamiliar problems.
+- Solve medium problems within 25–30 minutes.
+- Attempt selected hard problems.
+- Practise explaining your solution before coding.
+- Introduce timed mock interviews.
+The IGotAnOffer article recommends a structured process: clarify, plan, implement, optimize and test. We should use that for every coding problem. 
+IGotAnOffer+1
+
+
+3. High-Level System Design (HLD)
+This is particularly important for your experienced backend engineering profile.
+
+We should prepare you to design systems that operate at Google-scale, not simply draw microservice diagrams.
+Weeks 8–15, alongside DSA
+A. System design fundamentals
+Topic	What you need to understand
+Requirements	Functional and non-functional requirements
+Estimation	QPS, storage, bandwidth, throughput
+API Design	REST, pagination, idempotency
+Load Balancing	L4 vs L7, algorithms, health checks
+Caching	Redis, eviction, cache invalidation
+Databases	SQL vs NoSQL, indexing, replication
+Partitioning	Sharding, consistent hashing
+Messaging	Kafka, queues, event-driven systems
+Consistency	Strong, eventual, causal consistency
+Reliability	Replication, failover, retries
+Distributed Systems	CAP, consensus, leader election
+Observability	Metrics, logs, traces, SLOs
+
+B. Architecture concepts — deep understanding required
+These are not just definitions. You should be able to explain their internals and trade-offs.
+1. Monolith vs Microservices
+2. Horizontal vs Vertical Scaling
+3. Stateless vs Stateful Services
+4. Database Replication
+5. Database Sharding
+6. Consistent Hashing
+7. Distributed Caching
+8. Message Queues and Event Streaming
+9. Circuit Breakers
+10. Rate Limiting
+11. Distributed Locks
+12. Idempotency
+13. Eventual Consistency
+14. Distributed Transactions
+15. Saga Pattern
+16. CQRS and Event Sourcing
+17. Leader Election
+18. Consensus — Raft fundamentals
+Your existing Kafka and claims-processing experience is a useful foundation for understanding messaging, ordering, partitioning, retries and consistency. We should go beyond application-level Kafka usage and understand what happens inside distributed infrastructure.
+C. System design problems
+Solve these in the following order, starting with fundamentals.
+
+
+
+
+
+
+
+
+
+
+1. URL Shortener
+
+APIs, hashing, database, cache, read/write scaling.
+Beginner
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. WhatsApp / Chat Application
+
+WebSockets, message delivery, ordering, offline messages.
+Intermediate
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Uber / Ride Booking
+
+Geospatial indexing, matching, location updates, concurrency.
+Intermediate
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. YouTube
+
+Video upload, transcoding, CDN, storage and streaming.
+Advanced
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Google Drive
+
+File storage, metadata, synchronization, replication.
+Advanced
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Notification System
+
+Kafka, workers, scheduling, retries and delivery guarantees.
+Intermediate
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Search Engine
+
+Crawling, inverted indexes, ranking, distributed indexing.
+Advanced
+
+
+
+D. How to approach a system design interview
+For every design question, follow this sequence:
+1. Clarify functional requirements.
+2. Identify non-functional requirements.
+3. Estimate traffic, storage and throughput.
+4. Define APIs.
+5. Design the high-level architecture.
+6. Design database schemas.
+7. Explain data flow.
+8. Identify bottlenecks.
+9. Discuss scalability.
+10. Discuss failures, consistency and trade-offs.
+Expected outcome: You should be able to take a problem such as designing WhatsApp and develop the architecture from an empty whiteboard, explaining why every component exists.
+
+4. Low-Level Design (LLD)
+Weeks 5–10, alongside DSA
+Your Java and Spring Boot experience should give you an advantage here.
+
+But LLD interviews are different from implementing REST APIs. They test how you model objects, distribute responsibilities and design extensible systems.
+A. Core concepts
+Topic	What to learn
+OOP	Encapsulation, abstraction, inheritance, polymorphism
+SOLID	All five principles
+Composition	Composition vs inheritance
+UML	Class, sequence and state diagrams
+Relationships	Association, aggregation, composition
+Interfaces	Abstraction and dependency inversion
+Design Patterns	Creational, structural, behavioral
+Concurrency	Thread safety, locks, synchronization
+Extensibility	Open-closed design, dependency injection
+
+B. Design patterns to master
+Category	Patterns
+Creational	Factory, Abstract Factory, Builder, Singleton
+Structural	Adapter, Decorator, Facade, Proxy, Composite
+Behavioral	Strategy, Observer, Command, State, Template Method, Chain of Responsibility
+
+Don't just memorize definitions. Understand the problem each pattern solves and its trade-offs.
+C. LLD problems
+
+
+
+
+
+
+
+
+
+
+1. Parking Lot
+
+Vehicle, parking spot, ticket, pricing, allocation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Elevator System
+
+Elevator states, scheduling, floor requests, concurrency.
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Movie Ticket Booking
+
+Seat locking, booking states, payments, race conditions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Vending Machine
+
+State pattern, inventory, payment, change management.
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Logging Framework
+
+Logger, appenders, formatters, levels, asynchronous logging.
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Rate Limiter
+
+Token bucket, sliding window, concurrency, distributed state.
+
+
+
+D. How to approach LLD
+For every problem:
+1. Gather requirements.
+2. Identify entities and objects.
+3. Define responsibilities.
+4. Define interfaces and relationships.
+5. Draw the class diagram.
+6. Apply relevant design patterns.
+7. Address concurrency and edge cases.
+8. Discuss extensibility and testability.
+One important exercise: design the airline seat-booking system with AVAILABLE, HELD and BOOKED states, including concurrent booking requests and payment failures. This will combine your existing system-design knowledge with object-oriented design.
+
+5. Additional technical preparation
+Don't neglect these subjects. They can appear in technical discussions, code comprehension and project deep-dives.
+Java and Computer Science
+Subject	Required depth
+JVM	Heap, stack, Metaspace, class loading
+Garbage Collection	G1, ZGC, generational GC
+Collections	HashMap internals, HashSet, TreeMap
+Concurrency	Threads, locks, executors, atomics
+Java Memory Model	Happens-before, volatile
+Multithreading	Deadlock, race condition, starvation
+Algorithms	Sorting, searching, complexity
+Operating Systems	Processes, threads, scheduling
+Networking	TCP, UDP, HTTP, DNS, TLS
+Databases	Indexing, transactions, isolation levels
+
+Code comprehension
+Some 2026 interview guides report code-comprehension rounds, including experimental AI-assisted variants in selected teams. Don't treat this as a guaranteed round.
+
+Prepare to:
+- Read unfamiliar Java code.
+- Understand control flow and object interactions.
+- Identify bugs and edge cases.
+- Trace concurrent execution.
+- Explain complexity.
+- Suggest safe refactoring.
+
+prepfully.com+1
+Googleyness and Leadership
+Prepare six to eight genuine examples using STAR:
+- A technically challenging problem.
+- A production incident.
+- A disagreement with a teammate.
+- A decision made with incomplete information.
+- A project you owned end-to-end.
+- A mistake and what you learned.
+- A situation where you helped another engineer.
+- A situation where you improved engineering quality.
+Use your actual project experience rather than memorized generic answers.
+
+6. The actual preparation schedule
+I recommend a 20-week structured preparation plan, followed by two weeks of intensive mock interviews.
+
+The 24-week roadmap in your GitHub Gist is also a useful reference, particularly for its DSA pattern coverage. I am adapting it to give more attention to your backend experience, HLD and LLD. 
+Complete Weekly Roadmap · GitHub+1
+
+22-week preparation timeline
+Six study days per week · approximately 2.5–3 hours per day
+Weeks 1–3
+
+DSA foundations
+
+Arrays, strings, hashing, two pointers, sliding window, binary search
+
+
+
+Weeks 4–6
+
+Core DSA + LLD
+
+Linked lists, stacks, queues, trees, heaps, OOP, SOLID, design patterns
+
+
+
+Weeks 7–9
+
+Advanced DSA
+
+Graphs, BFS, DFS, recursion, backtracking, Union Find
+
+
+
+Weeks 10–12
+
+DP + HLD fundamentals
+
+Dynamic programming, greedy, databases, caching, load balancing
+
+
+
+Weeks 13–15
+
+HLD + LLD projects
+
+WhatsApp, Uber, URL shortener, parking lot, booking system
+
+
+
+Weeks 16–18
+
+Google-specific preparation
+
+Company-tagged problems, code comprehension, Java internals, behavioral
+
+
+
+Weeks 19–20
+
+Mock interview phase
+
+Timed coding, HLD/LLD mocks, weak-topic revision
+
+
+
+Weeks 21–22
+
+Final interview simulation
+
+Full interview loops, feedback, targeted revision
+
+
+
+Daily study routine
+Duration	Activity
+75–90 min	DSA concepts and problems
+40 min	HLD or LLD
+25 min	Java / CS fundamentals
+20 min	Revision and problem-solving journal
+
+Use one additional day each week for a timed coding mock, design exercise and weekly review. Keep one rest day.
+Weekly targets
+- 10–12 DSA problems, with proper understanding.
+- One HLD design exercise.
+- One LLD exercise.
+- One Java/CS fundamentals revision.
+- One timed coding mock.
+- One behavioral question.
+By the end, aim for approximately 180–220 carefully selected and revised coding problems rather than chasing a large problem count.
+
+7. Resources to follow
+I don't want you jumping between 20 different YouTube channels and courses. Use a small number of primary resources.
+
+
+
+
+
+
+
+
+
+
+LeetCode
+
+Primary coding practice
+Google-tagged problems
+
+
+
+
+
+
+
+
+
+
+
+
+Striver A2Z DSA
+
+Learn DSA systematically
+Striver's course
+
+
+
+
+
+
+
+
+
+
+
+
+NeetCode 150
+
+Problem patterns and revision
+NeetCode practice
+
+
+
+
+
+
+
+
+
+
+
+
+GeeksforGeeks
+
+Google-specific problem sheet
+Google SDE Sheet
+
+
+
+
+
+
+
+
+
+
+
+
+System Design Primer
+
+HLD concepts and practice
+GitHub repository
+
+
+
+
+
+
+
+
+
+
+
+
+Refactoring Guru
+
+LLD and design patterns
+Design patterns
+
+
+Also use your supplied resources:
+Resource	How we will use it
+IGotAnOffer	Interview approach and coding technique
+GFG Google SDE Sheet	Topic-based questions
+Google 2026 Gist	Long-term weekly roadmap
+Medium preparation journey	Timed practice and mock interviews
+DevsUnite	Recent interview format and examples
+Hack2Hire	Reported company questions
+Reddit discussion	Candidate experiences and practical advice
+
+The Medium preparation journey is older (2020), so use it for general preparation techniques, not current interview logistics. 
+Medium+2
+
+
+8. How we will measure readiness
+Don't decide you're ready because you've completed 200 problems.
+
+Use these benchmarks:
+Skill	Target before applying
+Easy DSA	Consistently solve in 10–15 minutes
+Medium DSA	Solve in 25–35 minutes
+Hard DSA	Make meaningful progress and handle selected problems
+Coding communication	Explain approach before implementation
+Complexity	Correctly explain time and space
+HLD	Complete a design in 40–45 minutes
+LLD	Model and explain a system in 40–45 minutes
+Java	Explain collection and concurrency internals
+Behavioral	6–8 strong STAR stories
+
+For every coding problem, follow this interview sequence:
+
+
+</p>
+    </div>
+</div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
 <div class="container">
@@ -2373,5 +3395,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('section, .skill-card, .project-card').forEach(el => obs.observe(el));
 </script>
+
+
 </body>
 </html>
